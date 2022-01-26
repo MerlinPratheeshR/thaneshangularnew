@@ -1,0 +1,1528 @@
+
+<div class="container-fluid ">
+    <h4 class="text_color_black" *ngIf="addmode"><b>Add Buyer</b></h4>
+    <h4 class="text_color_black" *ngIf="editmode"><b>Update Buyer</b></h4>
+    <h4 class="text_color_black" *ngIf="viewmode"><b>View Buyer</b></h4>
+    <div id="stepper1" class="bs-stepper">
+        <div class="bs-stepper-header">
+            <div class="step" data-target="#test-l-1">
+                <button class="step-trigger  ">
+                    <span class="bs-stepper-circle">1</span><br>
+                    <span class="bs-stepper-label">Business Information </span>
+                </button>
+            </div>
+            <div class="line"></div>
+            <div class="step active" aria-selected="true" data-target="#test-l-2">
+                <button [disabled]="BuyersForm.controls.iv_country.invalid || BuyersForm.controls.iv_license.invalid
+                ||BuyersForm.controls.iv_national.invalid||BuyersForm.controls.iv_exp_date.invalid||BuyersForm.controls.iv_country_issue.invalid
+                ||BuyersForm.controls.iv_f_name.invalid||BuyersForm.controls.iv_m_name.invalid||BuyersForm.controls.iv_l_name.invalid
+                ||BuyersForm.controls.iv_dob.invalid||BuyersForm.controls.iv_r_bussiness_name.invalid||BuyersForm.controls.iv_r_bussiness_name.invalid
+                ||BuyersForm.controls.iv_licenese_no.invalid||BuyersForm.controls.iv_r_address.invalid||BuyersForm.controls.business_multiple_branch.invalid
+                ||BuyersForm.controls.business_name.invalid||BuyersForm.controls.login_id.invalid||BuyersForm.controls.status.invalid||BuyersForm.controls.bus_doc_r_status.invalid
+                ||BuyersForm.controls.bus_doc_fail_reason.invalid"
+                    class="btn btn-sm btn_bg mr-2" class="step-trigger">
+                    <span class="bs-stepper-circle">2</span>
+                    <span class="bs-stepper-label">Manage Address
+                    </span>
+                </button>
+            </div>
+            <div class="line"></div>
+            <div class="step" data-target="#test-l-3">
+                <button [disabled]="BuyersForm.controls.billing_country.invalid
+                ||BuyersForm.controls.billing_state.invalid||BuyersForm.controls.billing_city.invalid||BuyersForm.controls.billing_branch_address.invalid
+                ||BuyersForm.controls.billing_branch_pincode.invalid||BuyersForm.controls.billing_branch_geolocation.invalid||BuyersForm.controls.b_address1.invalid
+                ||BuyersForm.controls.b_address2.invalid||BuyersForm.controls.b_displayname.invalid||BuyersForm.controls.b_phonenumber.invalid
+                ||BuyersForm.controls.b_country_code.invalid||BuyersForm.controls.s_address1.invalid||BuyersForm.controls.s_address2.invalid
+                ||BuyersForm.controls.s_display_name.invalid||BuyersForm.controls.s_phone_number.invalid||BuyersForm.controls.s_country_code.invalid||BuyersForm.controls.bus_doc_r_status.invalid
+                ||BuyersForm.controls.s_phoneno_verified.invalid" class="step-trigger">
+                    <span class="bs-stepper-circle">3</span>
+                    <span class="bs-stepper-label">Manage Payment
+                    </span>
+                </button>
+            </div>
+            <div class="line"></div>
+            <div class="step" data-target="#test-l-4">
+                <button [disabled]="BuyersForm.controls.bank_benefi_name.invalid
+                ||BuyersForm.controls.bank_name.invalid||BuyersForm.controls.bank_ac_no.invalid||BuyersForm.controls.back_iban.invalid
+                ||BuyersForm.controls.swift_code.invalid||BuyersForm.controls.billing_branch_geolocation.invalid||BuyersForm.controls.b_address1.invalid
+                ||BuyersForm.controls.b_address2.invalid||BuyersForm.controls.bank_currency.invalid||BuyersForm.controls.bank_browse_file.invalid
+                ||BuyersForm.controls.payment_mode.invalid||BuyersForm.controls.vat_tax_registration_number.invalid||BuyersForm.controls.vat_r_certificate.invalid||!bank_browse_file||!vat_r_certificate" class="step-trigger">
+                    <span class="bs-stepper-circle">4</span>
+                    <span class="bs-stepper-label">Manage Products
+                    </span>
+                </button>
+            </div>
+        </div>
+        <div class="bs-stepper-content">
+            <form [formGroup]="BuyersForm" (ngSubmit)="onSubmit()">
+                <div id="test-l-1" class="content">
+
+                    <div class="container-fluid">
+                        <div class="card card_border_radius" style="padding: 1px;">
+
+                            <div class="row" style="padding: 15px;">
+
+                                <div class="col-6">
+                                    <h6 class="text-dark font-weight-bold">Identity Verification</h6>
+                                    <div class="form-group row d-flex justify-content-center">
+
+                                        <label for="" class="col-sm-6 col-form-label">Select the country</label>
+                                        <div class="col-sm-6">
+                                            <select #mySelect formControlName="iv_country"
+                                                (change)='onOptionsSelected(mySelect.value)' class="form-control">
+                                                <option hidden value="">select</option>
+                                                <option *ngFor="let item of countryList" [value]="item.id">
+                                                    {{item.country_name}}</option>
+                                            </select>
+
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.iv_country.invalid && submitted)">
+                                                Country Name is required
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.iv_country.touched) && BuyersForm.controls.iv_country.errors?.required ">
+                                                Country Name is required
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row d-flex justify-content-center">
+
+                                        <label for="" class="col-sm-6 col-form-label">I'm company buyer, I manage this
+                                            account on behalf of a company and I have a trade license</label>
+
+                                            <div class="col-sm-6 mt-3">
+                                                <div class="form-group form-check">
+                                                    <input
+                                                      type="checkbox"
+                                                      formControlName="iv_license"
+                                                      class="form-check-input"
+                                                      [ngClass]="{ 'is-invalid': submitted && f.iv_license.errors }"
+                                                    />
+                                                    <label for="iv_license" class="form-check-label"
+                                                      >I have read and agree to the Terms</label
+                                                    >
+                                                    <div *ngIf="submitted && f.iv_license.errors" class="invalid-feedback">
+                                                      Accept Terms is required
+                                                    </div>
+                                                    <span class="text-danger"
+                                                    *ngIf="(BuyersForm.controls.iv_license.touched) && BuyersForm.controls.iv_license.errors?.required">
+                                                    Accept Terms is required
+                                                </span>
+                                                  </div>
+    
+                                            </div>
+                                    </div>
+
+
+
+
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">National or Residence id</label>
+                                        <div class="col-sm-6">
+                                           
+
+                                            <input type="text" placeholder="Enter National Id"
+                                                formControlName="iv_national" class="form-control ">
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.iv_national.invalid && submitted)">
+                                                Please enter National Id
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.iv_national.touched) && BuyersForm.controls.iv_national.errors?.required">
+                                                Please enter National Id
+                                            </span>
+                                            <mat-error class="text-danger"
+                                                *ngIf="BuyersForm.controls.iv_national.errors?.pattern">
+                                                Should not use special char
+                                            </mat-error>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">Expiry Date</label>
+                                        <div class="col-sm-6">
+                                            <input type="date" formControlName="iv_exp_date" class="form-control"
+                                                placeholder="Select Date">
+
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.iv_exp_date.invalid && submitted)">
+                                                Please Enter Expiry Date
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.iv_exp_date.touched) && BuyersForm.controls.iv_exp_date.errors?.required">
+                                                Please Enter Expiry Date
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">Country of Issue</label>
+                                        <div class="col-sm-6">
+                                            <select formControlName="iv_country_issue" class="form-control">
+                                                <option hidden value="">select</option>
+
+                                                <option *ngFor="let item of countryList" [value]="item.id">
+                                                    {{item.country_name}}</option>
+                                            </select>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.iv_country_issue.invalid && submitted)">
+                                                Please Enter Country of Issue
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.iv_country_issue.touched) && BuyersForm.controls.iv_country_issue.errors?.required">
+                                                Name is required
+                                            </span>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">First Name</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" formControlName="iv_f_name" class="form-control"
+                                                placeholder="Enter first Name" />
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.iv_f_name.invalid && submitted)">
+                                                Name is required
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.iv_f_name.touched) && BuyersForm.controls.iv_f_name.errors?.required">
+                                                Name is required
+                                            </span>
+                                            <mat-error class="text-danger"
+                                                *ngIf="BuyersForm.controls.iv_f_name.errors?.pattern">
+                                                Should not use special char
+                                            </mat-error>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">Middle Name</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" formControlName="iv_m_name" class="form-control"
+                                                placeholder="Enter Middle Name">
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.iv_m_name.invalid && submitted)">
+                                                Middle Name is required
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.iv_m_name.touched) && BuyersForm.controls.iv_m_name.errors?.required">
+                                                Middle Name is required
+                                            </span>
+                                           
+                                            <mat-error class="text-danger"
+                                                *ngIf="BuyersForm.controls.iv_m_name.errors?.pattern">
+                                                Should not use special char
+                                            </mat-error>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">Last Name</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" formControlName="iv_l_name" class="form-control"
+                                                placeholder="Enter Last Name">
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.iv_l_name.invalid && submitted)">
+                                                Last Name is required
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.iv_l_name.touched) && BuyersForm.controls.iv_l_name.errors?.required">
+                                                Middle Name is required
+                                            </span>
+                                            <mat-error class="text-danger"
+                                                *ngIf="BuyersForm.controls.iv_l_name.errors?.pattern">
+                                                Should not use special char
+                                            </mat-error>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">Date of Birth</label>
+                                        <div class="col-sm-6">
+                                            <input type="date" formControlName="iv_dob" class="form-control"
+                                                placeholder="Select Date">
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.iv_dob.invalid && submitted)">
+                                                Date of Birth is required
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.iv_dob.touched) && BuyersForm.controls.iv_dob.errors?.required">
+                                                Date of Birth is required
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">Registered business name</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" formControlName="iv_r_bussiness_name"
+                                                class="form-control" placeholder="(Must match business registration)">
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.iv_r_bussiness_name.invalid && submitted)">
+                                                Registered business name is required
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.iv_r_bussiness_name.touched) && BuyersForm.controls.iv_r_bussiness_name.errors?.required">
+                                                Registered business name is required
+                                            </span>
+                                            <mat-error class="text-danger"
+                                                *ngIf="BuyersForm.controls.iv_r_bussiness_name.errors?.pattern">
+                                                Should not use special char
+                                            </mat-error>
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">Business Lisence number</label>
+                                        <div class="col-sm-6">
+                                            <input type="number" formControlName="iv_licenese_no" class="form-control"
+                                                placeholder="Enter Number">
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.iv_licenese_no.invalid && submitted)">
+                                                Business Lisence number is required
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.iv_licenese_no.touched) && BuyersForm.controls.iv_licenese_no.errors?.required">
+                                                Business Lisence number is required
+                                            </span>
+                                            <mat-error class="text-danger"
+                                                *ngIf="BuyersForm.controls.iv_licenese_no.errors?.pattern">
+                                                Should not use special char
+                                            </mat-error>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">Residential Address line1</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" formControlName="iv_r_address" class="form-control"
+                                                placeholder="Residential Address ">
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.iv_r_address.invalid && submitted)">
+                                                Residential Address line1 is required
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.iv_r_address.touched) && BuyersForm.controls.iv_r_address.errors?.required">
+                                                Residential Address line1 is required
+                                            </span>
+                                            <mat-error class="text-danger"
+                                                *ngIf="BuyersForm.controls.iv_r_address.errors?.pattern">
+                                                Should not use special char
+                                            </mat-error>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-6">
+                                    <h6 class="text-dark font-weight-bold">Business Information</h6>
+                                    <div class="form-group row d-flex justify-content-center">
+
+                                        <label for="" class="col-sm-6 col-form-label">Do you have multiple
+                                            branches?</label>
+                                        <div class="col-sm-6 mt-2">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input"
+                                                    formControlName="business_multiple_branch" type="radio"
+                                                    name="business_multiple_branch" id="inlineRadio1" value="yes">
+                                                <label class="form-check-label" for="inlineRadio1">Yes</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input"
+                                                    formControlName="business_multiple_branch" type="radio"
+                                                    name="business_multiple_branch" id="inlineRadio2" value="no">
+                                                <label class="form-check-label" for="inlineRadio2">No</label>
+                                            </div>
+
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.business_multiple_branch.invalid && submitted)">
+                                                multiple branches required
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.business_multiple_branch.touched) && BuyersForm.controls.business_multiple_branch.errors?.required">
+                                                multiple branches required
+                                            </span>
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">Name</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" placeholder="Enter Name" formControlName="business_name"
+                                                class="form-control">
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.business_name.invalid && submitted)">
+                                                Business Name is required
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.business_name.touched) && BuyersForm.controls.business_name.errors?.required">
+                                                Business Name is required
+                                            </span>
+                                            <mat-error class="text-danger"
+                                                *ngIf="BuyersForm.controls.business_name.errors?.pattern">
+                                                Should not use special char
+                                            </mat-error>
+                                        </div>
+                                    </div>
+
+
+
+                                   
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">Email Id</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" id="emailId"
+                                                (focusout)="onFocusOut(BuyersForm.controls.login_id.value)"
+                                                placeholder="Enter Email-Id" formControlName="login_id"
+                                                class="form-control">
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.login_id.invalid && submitted)">
+                                                login id is required
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.login_id.touched) && BuyersForm.controls.login_id.errors?.required">
+                                                login id is required
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(this.EmailIdStatus?.mailcount == 1 && !BuyersForm.controls.login_id.errors?.pattern)">
+                                                EmailId Already Available
+                                            </span>
+                                            <mat-error class="text-danger"
+                                                *ngIf="BuyersForm.controls.login_id.errors?.pattern">
+                                                Enter valid Email-Id
+                                            </mat-error>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">Status</label>
+                                        <div class="col-sm-6">
+                                            <select formControlName="status" class="form-control">
+                                                <option hidden value="">select</option>
+                                                <option value="true">Active</option>
+                                                <option value="false">Inactive</option>
+                                            </select>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.status.invalid && submitted)">
+                                                status is required
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.status.touched) && BuyersForm.controls.status.errors?.required">
+                                                Status is required
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">Company Logo</label>
+                                        <div class="col-sm-6 ">
+                                            <label *ngIf="!viewmode">
+                                                <img src="../../../../assets/Form Field.png" alt="" class="img-fluid">
+                                                <input type="file" name="" id="file"
+                                                    (change)="companyLogoUpload($event)" style="display: none;">
+                                            </label>
+                                           
+                                            <div *ngIf="!business_com_logo" class="mt-1">
+                                                <p class="text_color_main">Please Upload an image @ 1980 * 1080</p>
+                                            </div>
+                                               
+                                            <div *ngIf="business_com_logo" class="mt-1">
+                                                <img src="{{business_com_logo}}" alt="" class="img-fluid"
+                                                    style="width: auto; height:50px;">
+                                            </div>
+                                           
+                                        </div>
+                                    </div>
+                                    <h6 class="text-dark font-weight-bold">Identity Document</h6>
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">Upload front side</label>
+                                        <div class="col-sm-6">
+                                            <label *ngIf="!viewmode">
+                                                <img src="../../../../assets/Form Field.png" alt="" class="img-fluid">
+                                                <input type="file" name="" id="file" (change)="frontSideUpload($event)"
+                                                    style="display: none;">
+                                            </label>
+
+                                            <div *ngIf="!id_doc_front_side" class="mt-1">
+                                                <p class="text_color_main">Please Upload an image @ 1980 * 1080</p>
+                                            </div>
+                                            <div *ngIf="id_doc_front_side" class="mt-1">
+                                                <img src="{{id_doc_front_side}}" alt="" class="img-fluid"
+                                                    style="width: auto; height:50px;">
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">Upload back side</label>
+
+                                        <div class="col-sm-6">
+                                            <label *ngIf="!viewmode">
+                                                <img src="../../../../assets/Form Field.png" alt="" class="img-fluid">
+                                                <input type="file" name="" id="file" (change)="backSideUpload($event)"
+                                                    style="display: none;">
+                                            </label>
+
+                                            <div *ngIf="!id_doc_back_side" class="mt-1">
+                                                <p class="text_color_main">Please Upload an image @ 1980 * 1080</p>
+                                            </div>
+                                            <div *ngIf="id_doc_back_side" class="mt-1">
+                                                <img src="{{id_doc_back_side}}" alt="" class="img-fluid"
+                                                    style="width: auto; height:50px;">
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                    <h6 class="text-dark font-weight-bold">Business Document</h6><br><br>
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">Upload Business Lisence</label>
+                                        <div class="col-sm-6">
+                                            <label *ngIf="!viewmode">
+                                                <img src="../../../../assets/Form Field.png" alt="" class="img-fluid">
+                                                <input type="file" name="" id="file" (change)="licenseUpload($event)"
+                                                    style="display: none;">
+                                            </label>
+
+                                            <div *ngIf="!bus_doc_license" class="mt-1">
+                                                <p class="text_color_main">Please Upload an image @ 1980 * 1080</p>
+                                            </div>
+                                            <div *ngIf="bus_doc_license" class="mt-1">
+                                                <img src="{{bus_doc_license}}" alt="" class="img-fluid"
+                                                    style="width: auto; height:50px;">
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row d-flex justify-content-center">
+
+                                        <label for="" class="col-sm-6 col-form-label">Registration Status</label>
+                                        <div class="col-sm-6">
+                                            <select formControlName="bus_doc_r_status" class="form-control">
+                                                <option hidden value="">select</option>
+                                                <option *ngFor="let item of RegistrationStatusList" [value]="item.id">
+                                                    {{item.reg_status_name}}</option>
+                                            </select>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.bus_doc_r_status.invalid && submitted)">
+                                                Please Enter Registration Status
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.bus_doc_r_status.touched) && BuyersForm.controls.bus_doc_r_status.errors?.required">
+                                                Please Enter Registration status
+                                            </span>
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="form-group row d-flex justify-content-center">
+
+                                        <label for="" class="col-sm-6 col-form-label">Registration fail reason</label>
+                                        <div class="col-sm-6">
+                                            <select formControlName="bus_doc_fail_reason" class="form-control">
+                                                <option hidden value="">select</option>
+                                                <option *ngFor="let item of ReasonList" [value]="item.id">
+                                                    {{item.reason_name}}</option>
+                                            </select>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.bus_doc_fail_reason.invalid && submitted)">
+                                                Please Enter Registration Fail Reason
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.bus_doc_fail_reason.touched) && BuyersForm.controls.bus_doc_fail_reason.errors?.required">
+                                                Please Enter Registration Fail Reason
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-center" style="padding:15px;">
+                                <button  (click)="next1()" [disabled]="!BuyersForm.valid" class="btn btn-sm btn_bg mr-2">Next</button>
+                                <button (click)="addClose()" class="btn btn-sm btn_bg">Cancel</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div id="test-l-2" class="content">
+                    <div class="container-fluid">
+                        <div class="card card_border_radius" style="padding: 1px;">
+
+                            <div class="row" style="padding: 15px;">
+
+                                <div class="col-6">
+                                    <h6 class="text-dark font-weight-bold">Billing Address</h6>
+
+
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">Country </label>
+                                        <div class="col-sm-6">
+                                            <select formControlName="billing_country" class="form-control">
+                                                <option hidden value="">select</option>
+                                                <option *ngFor="let item of countryList" [value]="item.id">
+                                                    {{item.country_name}}</option>
+                                            </select>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.billing_country.invalid && submitted)">
+                                                Billing Country is required
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.billing_country.touched) && BuyersForm.controls.billing_country.errors?.required">
+                                                Billing Country is required
+                                            </span>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">State</label>
+                                        <div class="col-sm-6">
+                                            <select formControlName="billing_state" class="form-control">
+                                                <option hidden value="">select</option>
+                                                <option *ngFor="let item of stateList" [value]="item.id">
+                                                    {{item.state_name}}</option>
+                                            </select>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.billing_state.invalid && submitted)">
+                                                State is required
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.billing_state.touched) && BuyersForm.controls.billing_state.errors?.required">
+                                                State is required
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">City</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" formControlName="billing_city" class="form-control"
+                                                placeholder="Enter city">
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.billing_city.invalid && submitted)">
+                                                City is required
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.billing_city.touched) && BuyersForm.controls.billing_city.errors?.required">
+                                                City is required
+                                            </span>
+                                            <mat-error class="text-danger"
+                                                *ngIf="BuyersForm.controls.billing_city.errors?.pattern">
+                                                Should not use special char
+                                            </mat-error>
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">Branch address</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" formControlName="billing_branch_address"
+                                                class="form-control" placeholder="Branch address">
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.billing_branch_address.invalid && submitted)">
+                                                Branch address is required
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.billing_branch_address.touched) && BuyersForm.controls.billing_branch_address.errors?.required">
+                                                Branch Address is required
+                                            </span>
+                                            <mat-error class="text-danger"
+                                                *ngIf="BuyersForm.controls.billing_branch_address.errors?.pattern">
+                                                Should not use special char
+                                            </mat-error>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">Branch pincode</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" formControlName="billing_branch_pincode"
+                                                class="form-control" placeholder="Enter pincode">
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.billing_branch_pincode.invalid && submitted)">
+                                                Branch pincode is required
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.billing_branch_pincode.touched) && BuyersForm.controls.billing_branch_pincode.errors?.required">
+                                                Branch Pincode is required
+                                            </span>
+                                            <mat-error class="text-danger"
+                                                *ngIf="BuyersForm.controls.billing_branch_pincode.errors?.pattern">
+                                                Should not use special char
+                                            </mat-error>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">Branch Geolocation</label>
+                                        <div class="col-sm-6">
+                                            <img src="../../../../assets/loc.jpg" alt="location"
+                                                (click)="getLocation()">
+                                            <div id="demo"></div><br>
+                                            <input type="text" readonly formControlName="billing_branch_geolocation"
+                                                class="form-control" placeholder="Click the above icon">
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.billing_branch_geolocation.invalid && submitted)">
+                                                Geolocation is required
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.billing_branch_geolocation.touched) && BuyersForm.controls.billing_branch_geolocation.errors?.required">
+                                                Geolocation is required
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">Address line1</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" formControlName="b_address1" class="form-control"
+                                                placeholder="Enter Address line1">
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.b_address1.invalid && submitted)">
+                                                Please enter the address
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.b_address1.touched) && BuyersForm.controls.b_address1.errors?.required">
+                                                Please enter the address
+                                            </span>
+                                            <mat-error class="text-danger"
+                                                *ngIf="BuyersForm.controls.b_address1.errors?.pattern">
+                                                Should not use special char
+                                            </mat-error>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">Address line2</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" formControlName="b_address2" class="form-control"
+                                                placeholder="Enter Address line2">
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.b_address2.invalid && submitted)">
+                                                Please enter the address
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.b_address2.touched) && BuyersForm.controls.b_address2.errors?.required">
+                                                Please enter the address
+                                            </span>
+                                            <mat-error class="text-danger"
+                                                *ngIf="BuyersForm.controls.b_address2.errors?.pattern">
+                                                Should not use special char
+                                            </mat-error>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">Display name</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" formControlName="b_displayname" class="form-control"
+                                                placeholder="Enter Display name">
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.b_displayname.invalid && submitted)">
+                                                Display Name is required
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.b_displayname.touched) && BuyersForm.controls.b_displayname.errors?.required">
+                                                Display Name is required
+                                            </span>
+                                            <mat-error class="text-danger"
+                                                *ngIf="BuyersForm.controls.b_displayname.errors?.pattern">
+                                                Should not use special char
+                                            </mat-error>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">Phone number</label>
+                                        <div class="col-sm-6">
+                                            <input type="number" formControlName="b_phonenumber" class="form-control"
+                                                placeholder="Enter Phone number">
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.b_phonenumber.invalid && submitted)">
+                                                Phone number is required
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.b_phonenumber.touched) && BuyersForm.controls.b_phonenumber.errors?.required">
+                                                Phone number is required
+                                            </span>
+                                            <mat-error class="text-danger"
+                                                *ngIf="BuyersForm.controls.b_phonenumber.errors?.pattern">
+                                                Enter 10 digit Phone Number
+                                            </mat-error>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">Country code</label>
+                                        <div class="col-sm-6">
+                                            <input type="number" formControlName="b_country_code" class="form-control"
+                                                placeholder="Enter Country code">
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.b_country_code.invalid && submitted)">
+                                                Country code is required
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.b_country_code.touched) && BuyersForm.controls.b_address2.errors?.required">
+                                                Country code is required
+                                            </span>
+
+                                        </div>
+                                    </div>
+                                    <h6 class="text-dark font-weight-bold">Pickup Address</h6><br>
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">Address line</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" formControlName="pickup_address" class="form-control"
+                                                placeholder="Enter Address line">
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.pickup_address.invalid && submitted)">
+                                                Address line is required
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.pickup_address.touched) && BuyersForm.controls.pickup_address.errors?.required">
+                                                Please enter the address
+                                            </span>
+                                            <mat-error class="text-danger"
+                                                *ngIf="BuyersForm.controls.pickup_address.errors?.pattern">
+                                                Should not use special char
+                                            </mat-error>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+
+
+
+                                    <div class="form-group row d-flex justify-content-center">
+
+                                        <label for="" class="col-sm-6 col-form-label">Pick address from google
+                                            map</label>
+                                        <div class="col-sm-6">
+                                            <button type="button" class="btn btn-primary mt-2 btn-sm">Yes</button><br>
+                                            <iframe
+                                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d317715.71194266673!2d-0.38178679983251546!3d51.52873519522585!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8a00baf21de75%3A0x52963a5addd52a99!2sLondon%2C%20UK!5e0!3m2!1sen!2sin!4v1639562315430!5m2!1sen!2sin"
+                                                width="190" height="90" style="border:0" class="mt-2" allowfullscreen=""
+                                                loading="lazy"></iframe>
+                                        </div>
+
+                                    </div>
+
+                                    <h6 class="text-dark font-weight-bold">Shipping Address</h6><br>
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">country</label>
+                                        <div class="col-sm-6">
+                                            <select formControlName="shipping_country" class="form-control">
+                                                <option hidden value="">select</option>
+                                                <option *ngFor="let item of countryList" [value]="item.id">
+                                                    {{item.country_name}}</option>
+                                            </select>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.shipping_country.invalid && submitted)">
+                                                Shipping Country is required
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.shipping_country.touched) && BuyersForm.controls.shipping_country.errors?.required">
+                                                Country is required
+                                            </span>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">State</label>
+                                        <div class="col-sm-6">
+                                            <select formControlName="shipping_state" class="form-control">
+                                                <option hidden value="">select</option>
+                                                <option *ngFor="let item of stateList" [value]="item.id">
+                                                    {{item.state_name}}</option>
+                                            </select>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.shipping_state.invalid && submitted)">
+                                                Shipping State is required
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.shipping_state.touched) && BuyersForm.controls.shipping_state.errors?.required">
+                                                State is required
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">City</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" formControlName="shipping_city" class="form-control"
+                                                placeholder="Enter city">
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.shipping_city.invalid && submitted)">
+                                                Shipping City is required
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.shipping_city.touched) && BuyersForm.controls.shipping_city.errors?.required">
+                                                City is required
+                                            </span>
+                                            <mat-error class="text-danger"
+                                                *ngIf="BuyersForm.controls.shipping_city.errors?.pattern">
+                                                Should not use special char
+                                            </mat-error>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">Address line1</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" formControlName="s_address1" class="form-control"
+                                                placeholder="Enter Address line1">
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.s_address1.invalid && submitted)">
+                                                Please enter the address
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.s_address1.touched) && BuyersForm.controls.s_address1.errors?.required">
+                                                Please enter the address
+                                            </span>
+                                            <mat-error class="text-danger"
+                                                *ngIf="BuyersForm.controls.s_address1.errors?.pattern">
+                                                Should not use special char
+                                            </mat-error>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">Address line2</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" formControlName="s_address2" class="form-control"
+                                                placeholder="Enter Address line2">
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.s_address2.invalid && submitted)">
+                                                Please enter the address
+                                            </span>
+                                            <mat-error class="text-danger"
+                                                *ngIf="BuyersForm.controls.s_address2.errors?.pattern">
+                                                Please enter the address
+                                            </mat-error>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">Display name</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" formControlName="s_display_name" class="form-control"
+                                                placeholder="Enter Display name">
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.s_display_name.invalid && submitted)">
+                                                Display name is required
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.s_display_name.touched) && BuyersForm.controls.s_display_name.errors?.required">
+                                                Display name is required
+                                            </span>
+                                            <mat-error class="text-danger"
+                                                *ngIf="BuyersForm.controls.s_display_name.errors?.pattern">
+                                                Should not use special char
+                                            </mat-error>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">Phone number</label>
+                                        <div class="col-sm-6">
+                                            <input type="number" formControlName="s_phone_number" class="form-control"
+                                                placeholder="Enter Phone number">
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.s_phone_number.invalid && submitted)">
+                                                Phone number is required
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.s_phone_number.touched) && BuyersForm.controls.s_phone_number.errors?.required">
+                                                Phone number is required
+                                            </span>
+                                            <mat-error class="text-danger"
+                                                *ngIf="BuyersForm.controls.s_phone_number.errors?.pattern">
+                                                Enter 10 digit Number
+                                            </mat-error>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">Country code</label>
+                                        <div class="col-sm-6">
+                                            <input type="number" formControlName="s_country_code" class="form-control"
+                                                placeholder="Enter Country code">
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.s_country_code.invalid && submitted)">
+                                                Country code is required
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.s_country_code.touched) && BuyersForm.controls.s_country_code.errors?.required">
+                                                Country codee is required
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row d-flex justify-content-center">
+
+                                        <label for="" class="col-sm-6 col-form-label">Phone number verified</label>
+                                        <div class="col-sm-6 mt-2">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" formControlName="s_phoneno_verified"
+                                                    type="radio" name="s_phoneno_verified" id="inlineRadio1"
+                                                    value="yes">
+                                                <label class="form-check-label" for="inlineRadio1">Yes</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" formControlName="s_phoneno_verified"
+                                                    type="radio" name="s_phoneno_verified" id="inlineRadio2" value="no">
+                                                <label class="form-check-label" for="inlineRadio2">No</label>
+                                            </div>
+                                            
+
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.s_phoneno_verified.invalid && submitted)">
+                                                Please verify the phone number
+                                            </span>
+                                            <span class="text-danger"
+                                            *ngIf="(BuyersForm.controls.s_phoneno_verified.touched) && BuyersForm.controls.s_phoneno_verified.errors?.required">
+                                            please verify the phone number
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-center" style="padding:15px;">
+                                <button (click)="next1()" [disabled]="
+                                BuyersForm.controls.billing_country.invalid
+                                ||BuyersForm.controls.billing_state.invalid
+                                ||BuyersForm.controls.billing_city.invalid
+                                ||BuyersForm.controls.billing_branch_address.invalid
+                                ||BuyersForm.controls.billing_branch_pincode.invalid
+                                ||BuyersForm.controls.billing_branch_geolocation.invalid
+                                ||BuyersForm.controls.b_address1.invalid
+                                ||BuyersForm.controls.b_address2.invalid
+                                ||BuyersForm.controls.b_displayname.invalid
+                                ||BuyersForm.controls.b_phonenumber.invalid
+                                ||BuyersForm.controls.b_country_code.invalid
+                                ||BuyersForm.controls.pickup_address.invalid
+                                ||BuyersForm.controls.pickup_address_googlemap.invalid
+                                ||BuyersForm.controls.shipping_country.invalid
+                                ||BuyersForm.controls.shipping_state.invalid
+                                ||BuyersForm.controls.shipping_city.invalid
+                                ||BuyersForm.controls.s_address1.invalid
+                                ||BuyersForm.controls.s_address2.invalid
+                                ||BuyersForm.controls.s_display_name.invalid
+                                ||BuyersForm.controls.s_phone_number.invalid
+                                ||BuyersForm.controls.s_country_code.invalid
+                                ||BuyersForm.controls.bus_doc_r_status.invalid
+                                ||BuyersForm.controls.s_phoneno_verified.invalid" class="btn btn-sm btn_bg mr-2">Next</button>
+                                <button (click)="addClose()" class="btn btn-sm btn_bg">Cancel</button>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                <div id="test-l-3" class="content">
+                    <div class="container-fluid">
+                        <div class="card card_border_radius" style="padding: 1px;">
+
+                            <div class="row" style="padding: 15px;">
+
+                                <div class="col-6">
+                                    <h6 class="text-dark font-weight-bold">Bank Details</h6>
+
+
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">Beneficiary Name</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" formControlName="bank_benefi_name" class="form-control"
+                                                placeholder="Beneficiary Name">
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.bank_benefi_name.invalid && submitted)">
+                                                Beneficiary Name is required
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.bank_benefi_name.touched) && BuyersForm.controls.bank_benefi_name.errors?.required">
+                                                Beneficiary Name is required
+                                            </span>
+                                            <mat-error class="text-danger"
+                                                *ngIf="BuyersForm.controls.bank_benefi_name.errors?.pattern">
+                                                Should not use special char
+                                            </mat-error>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">Bank Name</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" formControlName="bank_name" class="form-control"
+                                                placeholder="Enter bankname">
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.bank_name.invalid && submitted)">
+                                                Bank Name is required
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.bank_name.touched) && BuyersForm.controls.bank_name.errors?.required">
+                                                Bank name is required
+                                            </span>
+                                            <mat-error class="text-danger"
+                                                *ngIf="BuyersForm.controls.bank_name.errors?.pattern">
+                                                Should not use special char
+                                            </mat-error>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">Account number</label>
+                                        <div class="col-sm-6">
+                                            <input type="number" formControlName="bank_ac_no" class="form-control"
+                                                placeholder="Enter Account number">
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.bank_ac_no.invalid && submitted)">
+                                                Please enter the account number
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.bank_ac_no.touched) && BuyersForm.controls.bank_ac_no.errors?.required">
+                                                Please enter the account number
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">IBAN number</label>
+                                        <div class="col-sm-6">
+                                            <input type="number" formControlName="back_iban" class="form-control"
+                                                placeholder="Enter IBAN number">
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.back_iban.invalid && submitted)">
+                                                Please enter the IBAN number
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.back_iban.touched) && BuyersForm.controls.back_iban.errors?.required">
+                                                Please enter the IBAN number
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">Swift code</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" formControlName="swift_code" class="form-control"
+                                                placeholder="Enter Swift code">
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.swift_code.invalid && submitted)">
+                                                Swift code is required
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.swift_code.touched) && BuyersForm.controls.swift_code.errors?.required">
+                                                Swift code is required
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">Currency</label>
+                                        <div class="col-sm-6">
+
+                                            <select formControlName="bank_currency" class="form-control">
+                                                <option hidden value="">select</option>
+                                                <option *ngFor="let item of CurrencyList" [value]="item.id">
+                                                    {{item.currency_name}}</option>
+                                            </select>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.bank_currency.invalid && submitted)">
+                                                Currency is required
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.bank_currency.touched) && BuyersForm.controls.bank_currency.errors?.required">
+                                                Currency is required
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">Browse files</label>
+                                        <div class="col-sm-6">
+                                            <label *ngIf="!viewmode">
+                                                <img src="../../../../assets/Form Field.png" alt="" class="img-fluid">
+                                                <input type="file" name="" id="file" (change)="broweFiles($event)"
+                                                    style="display: none;">
+                                            </label>
+
+                                            <div *ngIf="!bank_browse_file" class="mt-1">
+                                                <p class="text_color_main">Please Upload an image @ 1980 * 1080</p>
+                                            </div>
+                                            <div *ngIf="bank_browse_file" class="mt-1">
+                                                <img src="{{bank_browse_file}}" alt="" class="img-fluid"
+                                                    style="width: auto; height:50px;">
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+
+
+                                <div class="col-6">
+                                    <h6 class="text-dark font-weight-bold">Payment Information</h6>
+
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">Payment Mode</label>
+                                        <div class="col-sm-6">
+                                            <!--  <div *ngFor="let data of Data1; let i=index">
+                                                <label>
+                                                    <input type="checkbox" [value]="data.value"
+                                                        (change)="onPaymentModeChange($event)" />
+                                                    {{data.name}}
+                                                </label>
+                                            </div>-->
+                                            <ng-container *ngFor="let checkbox of payment_mode; let i = index"
+                                                formArrayName="payment_mode">
+                                                <input type="checkbox" [formControlName]="i" />{{checkbox.name}}
+                                                <br />
+                                                <br />
+                                            </ng-container>
+                                        </div>
+                                    </div> 
+
+                                    <h6 class="text-dark font-weight-bold">VAT Information</h6>
+                                    <div class="form-group row d-flex justify-content-center">
+
+                                        <label for="" class="col-sm-6 col-form-label">Tax Registration Number</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" placeholder="Enter Tax Registration Number"
+                                                formControlName="vat_tax_registration_number" class="form-control">
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.vat_tax_registration_number.invalid && submitted)">
+                                                Tax Registration Number is required
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.vat_tax_registration_number.touched) && BuyersForm.controls.vat_tax_registration_number.errors?.required">
+                                                Tax Registration number is required
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">Upload tax Registration
+                                            certificate</label>
+                                        <div class="col-sm-6">
+                                            <label *ngIf="!viewmode">
+                                                <img src="../../../../assets/Form Field.png" alt="" class="img-fluid">
+                                                <input type="file" name="" id="file"
+                                                    (change)="taxRegistrationUpload($event)" style="display: none;">
+                                            </label>
+
+                                            <div *ngIf="!vat_r_certificate" class="mt-1">
+                                                <p class="text_color_main">Please Upload an image @ 1980 * 1080</p>
+                                            </div>
+                                            <div *ngIf="vat_r_certificate" class="mt-1">
+                                                <img src="{{vat_r_certificate}}" alt="" class="img-fluid"
+                                                    style="width: auto; height:50px;">
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row justify-content-center" style="padding:15px;">
+                                <button (click)="next1()" [disabled]="BuyersForm.controls.bank_benefi_name.invalid
+                                ||BuyersForm.controls.bank_name.invalid||BuyersForm.controls.bank_ac_no.invalid||BuyersForm.controls.back_iban.invalid
+                                ||BuyersForm.controls.swift_code.invalid||BuyersForm.controls.billing_branch_geolocation.invalid||BuyersForm.controls.b_address1.invalid
+                                ||BuyersForm.controls.b_address2.invalid||BuyersForm.controls.bank_currency.invalid||BuyersForm.controls.bank_browse_file.invalid
+                                ||BuyersForm.controls.payment_mode.invalid||BuyersForm.controls.vat_tax_registration_number.invalid||BuyersForm.controls.vat_r_certificate.invalid" class="btn btn-sm btn_bg mr-2">Next</button>
+                                <button (click)="addClose()" class="btn btn-sm btn_bg">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="test-l-4" class="content">
+                    <div class="container-fluid">
+                        <div class="card card_border_radius" style="padding: 1px;">
+                            <div class="row" style="padding: 15px;">
+
+                                <div class="col-6">
+                                    <h6 class="text-dark font-weight-bold">Warehouse Information</h6>
+
+
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">Country </label>
+                                        <div class="col-sm-6">
+                                            <select formControlName="wh_country" class="form-control">
+                                                <option hidden value="">select</option>
+                                                <option *ngFor="let item of countryList" [value]="item.id">
+                                                    {{item.country_name}}</option>
+                                            </select>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.wh_country.invalid && submitted)">
+                                                Country is required
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.wh_country.touched) && BuyersForm.controls.wh_country.errors?.required">
+                                                Country is required
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">State</label>
+                                        <div class="col-sm-6">
+                                            <select formControlName="wh_state" class="form-control">
+                                                <option hidden value="">select</option>
+                                                <option *ngFor="let item of stateList" [value]="item.id">
+                                                    {{item.state_name}}</option>
+                                            </select>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.wh_state.invalid && submitted)">
+                                                State is required
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.wh_state.touched) && BuyersForm.controls.wh_state.errors?.required">
+                                                State is required
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">City</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" formControlName="wh_city" class="form-control"
+                                                placeholder="Enter city">
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.wh_city.invalid && submitted)">
+                                                City is required
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.wh_city.touched) && BuyersForm.controls.wh_city.errors?.required">
+                                                City is required
+                                            </span>
+                                            <mat-error class="text-danger"
+                                                *ngIf="BuyersForm.controls.wh_city.errors?.pattern">
+                                                Should not use special char
+                                            </mat-error>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">Address line1</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" formControlName="wh_addressline1" class="form-control"
+                                                placeholder="Enter Address line1">
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.wh_addressline1.invalid && submitted)">
+                                                Please enter the address
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.wh_addressline1.touched) && BuyersForm.controls.wh_addressline1.errors?.required">
+                                                Please enter the address
+                                            </span>
+                                            <mat-error class="text-danger"
+                                                *ngIf="BuyersForm.controls.wh_addressline1.errors?.pattern">
+                                                Should not use special char
+                                            </mat-error>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">Address line2</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" formControlName="wh_addressline2" class="form-control"
+                                                placeholder="Enter Address line2">
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.wh_addressline2.invalid && submitted)">
+                                                Please enter the Address
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.wh_addressline2.touched) && BuyersForm.controls.wh_addressline2.errors?.required">
+                                                Please enter the address
+                                            </span>
+                                            <mat-error class="text-danger"
+                                                *ngIf="BuyersForm.controls.wh_addressline2.errors?.pattern">
+                                                Should not use special char
+                                            </mat-error>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">Display name</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" formControlName="wh_display_name" class="form-control"
+                                                placeholder="Enter Display name">
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.wh_display_name.invalid && submitted)">
+                                                Display name is required
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.wh_display_name.touched) && BuyersForm.controls.wh_display_name.errors?.required">
+                                                Display name is required
+                                            </span>
+                                            <mat-error class="text-danger"
+                                                *ngIf="BuyersForm.controls.wh_display_name.errors?.pattern">
+                                                Should not use special char
+                                            </mat-error>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">Phone number</label>
+                                        <div class="col-sm-6">
+                                            <input type="number" formControlName="wh_phone_number" class="form-control"
+                                                placeholder="Enter Phone number">
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.wh_phone_number.invalid && submitted)">
+                                                Phone number is required
+                                            </span>
+                                            <mat-error class="text-danger"
+                                                *ngIf="BuyersForm.controls.wh_phone_number.errors?.pattern">
+                                                Enter 10 digit Phone Number
+                                            </mat-error>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">Country code</label>
+                                        <div class="col-sm-6">
+                                            <input type="number" formControlName="wh_country_code" class="form-control"
+                                                placeholder="Enter country code">
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.wh_country_code.invalid && submitted)">
+                                                Country code is required
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.wh_country_code.touched) && BuyersForm.controls.wh_country_code.errors?.required">
+                                                Country code is required
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">Address line</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" formControlName="wh_address_line" class="form-control"
+                                                placeholder="Enter Address line">
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.wh_address_line.invalid && submitted)">
+                                                please enter the address
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.wh_address_line.touched) && BuyersForm.controls.wh_address_line.errors?.required">
+                                                Please enter the address
+                                            </span>
+                                            <mat-error class="text-danger"
+                                                *ngIf="BuyersForm.controls.wh_address_line.errors?.pattern">
+                                                Should not use special char
+                                            </mat-error>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="col-6">
+
+                                    <div class="form-group row d-flex justify-content-center">
+
+                                        <label for="" class="col-sm-6 col-form-label">Phone number verified</label>
+                                        <div class="col-sm-6 mt-2">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input"
+                                                    formControlName="wh_phonenumber_verified" type="radio"
+                                                    name="wh_phonenumber_verified" id="inlineRadio1" value="yes">
+                                                <label class="form-check-label" for="inlineRadio1">Yes</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input"
+                                                    formControlName="wh_phonenumber_verified" type="radio"
+                                                    name="wh_phonenumber_verified" id="inlineRadio2" value="no">
+                                                <label class="form-check-label" for="inlineRadio2">No</label>
+                                            </div>
+
+
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.wh_phonenumber_verified.invalid && submitted)">
+                                                Please verify the phone number
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.wh_phonenumber_verified.touched) && BuyersForm.controls.wh_phonenumber_verified.errors?.required">
+                                                Please verify the phone number
+                                            </span>
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group row d-flex justify-content-center">
+
+                                        <label for="" class="col-sm-6 col-form-label">Pick address from google
+                                            map</label>
+                                        <div class="col-sm-6">
+                                            <button type="button" class="btn btn-primary btn-sm">Yes</button><br>
+                                            <iframe
+                                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d317715.71194266673!2d-0.38178679983251546!3d51.52873519522585!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8a00baf21de75%3A0x52963a5addd52a99!2sLondon%2C%20UK!5e0!3m2!1sen!2sin!4v1639562315430!5m2!1sen!2sin"
+                                                width="190" height="90" style="border:0" class="mt-2" allowfullscreen=""
+                                                loading="lazy"></iframe>
+                                        </div>
+
+                                    </div>
+
+
+                                    <h6 class="text-dark font-weight-bold">Product Information</h6><br>
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">Product type</label>
+                                        <div class="col-sm-6">
+                                            <select formControlName="product_type" class="form-control">
+                                                <option hidden value="">select</option>
+                                                <option *ngFor="let item of ProductTypeList" [value]="item.id">
+                                                    {{item.product_type_name}}</option>
+                                            </select>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.product_type.invalid && submitted)">
+                                                Please enter the Status
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.product_type.touched) && BuyersForm.controls.product_type.errors?.required">
+                                                Please enter the address
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row d-flex justify-content-center">
+                                        <label for="" class="col-sm-6 col-form-label">Trading type</label>
+                                        <div class="col-sm-6">
+                                            <select formControlName="trading_type" class="form-control">
+                                                <option hidden value="">select</option>
+                                                <option *ngFor="let item of TradingTypeList" [value]="item.id">
+                                                    {{item.trading_type_name}}</option>
+                                            </select>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.trading_type.invalid && submitted)">
+                                                Trading type is Required
+                                            </span>
+                                            <span class="text-danger"
+                                                *ngIf="(BuyersForm.controls.trading_type.touched) && BuyersForm.controls.trading_type.errors?.required">
+                                                Trading type is required
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-center" style="padding:15px;">
+
+                                <button type="submit" [disabled]="BuyersForm.controls.wh_country.invalid
+                                ||BuyersForm.controls.wh_state.invalid||BuyersForm.controls.wh_city.invalid||BuyersForm.controls.wh_addressline1.invalid
+                                ||BuyersForm.controls.wh_addressline2.invalid||BuyersForm.controls.wh_display_name.invalid||BuyersForm.controls.wh_phone_number.invalid
+                                ||BuyersForm.controls.wh_country_code.invalid||BuyersForm.controls.wh_address_line.invalid||BuyersForm.controls.wh_phonenumber_verified.invalid
+                                ||BuyersForm.controls.wh_pickaddress.invalid||BuyersForm.controls.product_type.invalid||BuyersForm.controls.trading_type.invalid" class="btn btn_bg btn-sm mr-1" (click)="addBuyerDialog()"
+                                    *ngIf="addmode">Save</button>
+                                <button type="submit" class="btn btn_bg btn-sm mr-1" (click)="updateBuyer()"
+                                    *ngIf="editmode">Update</button>
+                                <button (click)="addClose()" type="button"
+                                    class="btn btn_bg btn-sm mr-1">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addBuyerModal" tabindex="-1" role="dialog" aria-labelledby="addBuyerModalTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text_color_black" id="exampleModalLongTitle">Add Buyer?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Do you really want to Add this Buyer ?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn_bg btn-sm" (click)="cancel()">No</button>
+                <button type="button" class="btn btn_bg btn-sm" (click)="addBuyer()">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+

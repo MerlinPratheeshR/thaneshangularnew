@@ -1,0 +1,71 @@
+<div class="container-fluid">
+    <h4 class="text_color_black" *ngIf="addmode"><b>Add New Feature</b></h4>
+    <h4 class="text_color_black" *ngIf="editmode"><b>Update Feature</b></h4>
+    <h4 class="text_color_black" *ngIf="viewmode"><b>Feature Details</b></h4> 
+    <div class="card card_border_radius" style="padding: 10px;">
+        <div style="padding:20px;">
+            <form [formGroup]="addFeaturesForm">
+                <div class="form-group row d-flex justify-content-center">
+                    <label for=""  class="col-sm-2 col-form-label">Title</label>
+                    <div class="col-sm-6">
+                        <input type="text" formControlName="title" class="form-control">
+                        <span class="text-danger"
+                            *ngIf="(addFeaturesForm.controls.title.touched) && addFeaturesForm.controls.title.errors?.required">
+                             Title is required
+                            </span>
+
+                            <mat-error class="text-danger" *ngIf="addFeaturesForm.controls.title.errors?.pattern">
+                                Should not use special char
+                               </mat-error>
+
+                    </div>
+                  </div>
+    
+                  <div class="form-group row d-flex justify-content-center">
+                    <label for=""  class="col-sm-2 col-form-label">Content</label>
+                    <div class="col-sm-6">
+                        <input type="text" formControlName="content" class="form-control">
+                        <span class="text-danger"
+                        *ngIf="(addFeaturesForm.controls.content.touched) && addFeaturesForm.controls.content.errors?.required">
+                        Content is required
+                        </span>
+
+                        <mat-error class="text-danger" *ngIf="addFeaturesForm.controls.content.errors?.pattern">
+                            Should not use special char
+                           </mat-error>
+
+                    </div>
+                  </div>
+    
+                  <div class="form-group row d-flex justify-content-center">
+                    <label for=""  class="col-sm-2 col-form-label">Status</label>
+                    <div class="col-sm-6">
+                        <select formControlName="status" class="form-control">
+                            <option value="true">Active</option>
+                            <option value="false">Inactive</option>
+                        </select>
+                    </div>
+                  </div>
+    
+                  <div class="form-group row d-flex justify-content-center">
+                    <label for=""  class="col-sm-2 col-form-label"></label>
+                    <div class="col-sm-6">
+                        <input *ngIf="!viewmode" type="file" name="" id="" (change)="UploadFeatures($event)">
+                        <div *ngIf="!imageUploaded">
+                            <p class="text_color_main">Please Upload an image</p>
+                        </div>
+                    </div>
+                  </div>
+                  <div *ngIf="imageUploaded">
+                      <img src="{{featuresUrl}}" alt="" class="img-fluid" style="width: auto; height:75px;">
+                  </div>
+            </form>
+        </div>
+        
+        <div class="d-flex justify-content-center">
+            <button type="button" class="btn btn_bg btn-sm mr-1" (click)="addFeatures()" *ngIf="addmode">Save</button>
+            <button type="button" class="btn btn_bg btn-sm mr-1" (click)="updateFeatures()" *ngIf="editmode">Update</button>
+            <button type="button" class="btn btn_bg btn-sm mr-1" (click)="cancel()">Cancel</button>
+        </div>
+    </div>
+</div>

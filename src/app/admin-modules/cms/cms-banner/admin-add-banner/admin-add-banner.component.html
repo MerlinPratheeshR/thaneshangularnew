@@ -1,0 +1,137 @@
+<div class="container-fluid">
+  <h4 class="text_color_black" *ngIf="addmode"><b>Add New Banner</b></h4>
+  <h4 class="text_color_black" *ngIf="editmode"><b>Update Banner</b></h4>
+  <h4 class="text_color_black" *ngIf="viewmode"><b>Banner Details</b></h4>
+  <div class="card card_border_radius" style="padding: 10px;">
+
+    <form [formGroup]="addBannerForm">
+
+      <div class="form-group row d-flex justify-content-center">
+        <label for="" class="col-sm-2 col-form-label">Title</label>
+        <div class="col-sm-6">
+          <input type="text" formControlName="title" class="form-control" placeholder="Enter the title">
+          <span class="text-danger"
+            *ngIf="(addBannerForm.controls.title.touched) && addBannerForm.controls.title.errors?.required">
+            Title is required
+          </span>
+
+          <mat-error class="text-danger" *ngIf="addBannerForm.controls['title'].errors['pattern']">
+            Should not use special char
+          </mat-error>
+
+
+
+        </div>
+      </div>
+
+      <div class="form-group row d-flex justify-content-center">
+        <label for="" class="col-sm-2 col-form-label">Content</label>
+        <div class="col-sm-6">
+          <input type="text" formControlName="content" class="form-control" placeholder="Enter the Content">
+          <span class="text-danger"
+            *ngIf="(addBannerForm.controls.content.touched) && addBannerForm.controls.content.errors?.required">
+            Content is required
+          </span>
+
+          <mat-error class="text-danger" *ngIf="addBannerForm.controls.content.errors?.pattern">
+            Should not use special char
+          </mat-error>
+
+        </div>
+      </div>
+
+      <div class="form-group row d-flex justify-content-center">
+        <label for="" class="col-sm-2 col-form-label">Status</label>
+        <div class="col-sm-6">
+          <select formControlName="status" class="form-control">
+            <option value="" selected disabled>Select Fields</option>
+            <option value="1">Active</option>
+            <option value="2">Inactive</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group row d-flex justify-content-center">
+        <label for="" class="col-sm-2 col-form-label">Banner Type</label>
+        <div class="col-sm-6">
+          <select #mySelect formControlName="filetype" (change)='onOptionsSelected(mySelect.value)'
+            class="form-control">
+            <option value="" selected disabled>Select Fields</option>
+            <option value="image">Image</option>
+            <option value="video">Video or GIF</option>
+          </select>
+        </div>
+      </div>
+      <div id="image" style="display: none;">
+        <div class="form-group row d-flex justify-content-center">
+          <label for="" class="col-sm-2 col-form-label">Landscape</label>
+          <div class="col-sm-6 ">
+            <label *ngIf="!viewmode">
+              <img src="../../../../assets/Form Field.png" alt="" class="img-fluid">
+              <input type="file" name="" id="file" (change)="UploadLandscape($event)" style="display: none;">
+            </label>
+
+            <div *ngIf="!landscapeurl" class="mt-1">
+              <p class="text_color_main">Please Upload an image @ 1980 * 1080</p>
+            </div>
+
+            <div *ngIf="landscapeurl" class="mt-1">
+              <img src="{{landscapeurl}}" alt="" class="img-fluid" style="width: auto; height:50px;">
+            </div>
+
+          </div>
+        </div>
+        <div class="form-group row d-flex justify-content-center">
+          <label for="" class="col-sm-2 col-form-label">Portrait</label>
+          <div class="col-sm-6 ">
+            <label *ngIf="!viewmode">
+              <img src="../../../../assets/Form Field.png" alt="" class="img-fluid">
+              <input type="file" name="" id="file" (change)="UploadPortrait($event)" style="display: none;">
+            </label>
+
+            <div *ngIf="!portraiturl" class="mt-1">
+              <p class="text_color_main">Please Upload an image @ 1080 * 1350</p>
+            </div>
+
+            <div *ngIf="portraiturl" class="mt-1">
+              <img src="{{portraiturl}}" alt="" class="img-fluid" style="width: auto; height:50px;">
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+      <div id="video" style="display: none;">
+        <div class="form-group row d-flex justify-content-center">
+          <label for="" class="col-sm-2 col-form-label">Video</label>
+          <div class="col-sm-6 ">
+            <label *ngIf="!viewmode">
+              <img src="../../../../assets/Form Field.png" alt="" class="img-fluid">
+              <input type="file" name="" id="file" (change)="UploadVideo($event)" style="display: none;">
+            </label>
+
+            <div *ngIf="!videourl" class="mt-1">
+              <p class="text_color_main">Please Upload an image @ 1980 * 1080</p>
+            </div>
+
+            <div *ngIf="videourl" class="mt-1">
+              <img src="{{videourl}}" alt="" class="img-fluid" style="width: auto; height:50px;">
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+
+
+    </form>
+
+    <div class="d-flex justify-content-center">
+      <button type="button" class="btn btn_bg btn-sm mr-1" (click)="addBanner()" *ngIf="addmode">Save</button>
+      <button type="button" class="btn btn_bg btn-sm mr-1" (click)="updateBanner()" *ngIf="editmode">Update</button>
+      <button type="button" class="btn btn_bg btn-sm mr-1" (click)="cancel()">Cancel</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,132 @@
+<div class="mt-1">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a [routerLink]="['/admin']" routerLinkActive="router-link-active">Admin</a></li>
+      <li class="breadcrumb-item"><a [routerLink]="['/admin/Cars']" routerLinkActive="router-link-active">Cars</a></li>
+      <li *ngIf="addmode" class="breadcrumb-item active" aria-current="page">ADD</li>
+      <li *ngIf="editmode" class="breadcrumb-item active" aria-current="page">EDIT</li>
+    </ol>
+  </nav>
+</div>
+
+<div class="mt-1 d-flex justify-content-end">
+  <button type="button" class="btn btn_bg btn-sm mr-1" data-toggle="modal" data-target="#addCars">New</button>
+  <button type="button" class="btn btn-info btn-sm mr-1" (click)="editCars()">Edit</button>
+  <button type="button" class="btn btn-danger btn-sm mr-1" (click)="Validate()">Delete</button>
+</div>
+
+<div>
+  <h3>Cars List</h3>
+</div>
+
+<div class="mt-1">
+  <ag-grid-angular #agGrid style="width: auto; height: 750px;" class="ag-theme-alpine" [rowHeight]="50" [rowData]="Cars"
+    [columnDefs]="CarscolumnDefs" [pagination]="true">
+  </ag-grid-angular>
+</div>
+
+
+<div class="modal fade" id="addCars" tabindex="-1" aria-labelledby="addCarsLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addCarsLabel">New Cars Form</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="mt-1">
+          <form [formGroup]="CarsForm">
+            <div class="container-fluid mt-3 mb-3">
+              <div class="tab-content" id="myTabContent">
+                <div class="row">
+
+
+                  <div class="form-group col-6">
+                    <label for="exampleFormControlInput1">Car Id</label>
+                    <input type="text" class="form-control" placeholder="Aotu Generated" formControlName="">
+                  </div>
+                  <div class="form-group col-6">
+                    <label for="exampleFormControlInput1">Brand Name</label>
+                    <select class="form-control" formControlName="">
+                      <option value="">Select The Brand Name</option>
+                      <option value="1">Country 1</option>
+                      <option value="2">Country 2</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-6">
+                    <label for="exampleFormControlInput1">Model Name</label>
+                    <select class="form-control" formControlName="">
+                      <option value="">Select The Model Name</option>
+                      <option value="1">Country 1</option>
+                      <option value="2">Country 2</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-6">
+                    <label for="exampleFormControlInput1">Parameters Name</label>
+                    <input type="text" class="form-control"
+                      placeholder="Based On The Model, Paramerters Details Will Be Displayed" formControlName="">
+                  </div>
+                  <div class="form-group col-6">
+                    <label for="exampleFormControlSelect1">Parameters Value</label>
+                    <select class="form-control" formControlName="sh_country">
+                      <option value="">Select Value</option>
+                      <option value="1">Country 1</option>
+                      <option value="2">Country 2</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-6">
+                    <label for="exampleFormControlInput1">Created Date & Time</label>
+                    <input type="text" class="form-control" placeholder="Disable Field" formControlName="sh_address2">
+                  </div>
+                  <div class="form-group col-6">
+                    <label for="exampleFormControlInput1">Modified Date & Time</label>
+                    <input type="text" class="form-control" placeholder="Disable Field" formControlName="sh_address2">
+                  </div>
+                  <div class="form-group col-6">
+                    <label for="exampleFormControlInput1">Created By</label>
+                    <input type="text" class="form-control" placeholder="Disable Field" formControlName="sh_address2">
+                  </div>
+                  <div class="form-group col-6">
+                    <label for="exampleFormControlInput1">Modified By</label>
+                    <input type="text" class="form-control" placeholder="Disable Field" formControlName="sh_address2">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="d-flex justify-content-end">
+          <button *ngIf="addmode" type="button" class="btn btn-success btn-sm mr-1" (click)="addCars()"
+            data-dismiss="modal">Add</button>
+          <button *ngIf="editmode" type="button" class="btn btn-success btn-sm mr-1" (click)="updateCars()"
+            data-dismiss="modal">Update</button>
+          <button class="btn btn-warning btn-sm" (click)="cancel()" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="deleteCars" tabindex="-1" aria-labelledby="deleteCarsLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteCarsLabel">Delete</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Do you really want to delete this Cars ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-info" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-danger" (click)="deleteCars()" data-dismiss="modal">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,293 @@
+<div class="container-fluid">
+    <div class="row d-flex justify-content-between">
+      <h2 style="color: black;"> <b>Subscription Plan List</b> </h2>
+        <button type="button" class="btn btn_bg btn-sm mr-3" (click)="addSubscriptionPlan()" style="font-size: 12px;"><i class="fas fa-plus"></i> New </button>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="accordion" id="accordionExample">
+          <div class="card-counter-5 shadow">
+            <div class="card-header bg_nav_custom_1" id="headingOne" style="height: 60px;" *ngIf="!FilteredState">
+              
+              <div class="row" >
+                <div class="col-12 d-flex justify-content-between">
+                  <div>
+                    <button style="color: white;" class="btn btn-sm mb-2" type="button">
+                      <i class="fa fa-arrow-circle-right" style="padding:0px 8px 0px 0px" aria-hidden="true"></i>
+                    </button>
+                  </div>
+                  <div>
+                    <button style="color: white;" class="btn btn-sm mb-2" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      Filters <i class="fas fa-chevron-down"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-header bg_nav_custom_2" id="headingOne" style="height: 60px;" *ngIf="FilteredState">
+              <div class="row" >
+                <div class="col-12 d-flex justify-content-between">
+                  <div class="mt-2">
+                    <span style="font-size: 12px;" class="filter-badge mr-1" *ngFor="let item of [1,2,3,4,5]">Field Name: Value <i class="ml-2 mr-1 fas fa-times"></i> </span>
+                  </div>
+                  <div>
+                    <button style="color: #056CB1;" class="btn btn-sm mb-2" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      Reset Filters <i class="fas fa-chevron-down"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+        
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+              <div class="card-body" style="background-color: rgba(255, 255, 255, 0.03);" >
+                <form [formGroup]="advanceFilterForm">
+                    <div class="form-row">
+                        <div class="form-group col-3">
+                          <select class="form-control" placeholder="select">
+                              <option  value="" selected disabled>Status</option>
+                              <option  value="1">Active</option>
+                              <option  value="2">In active</option>
+                          </select>
+                        </div>
+                        <div class="form-group col-3">
+                          <select class="form-control" placeholder="select">
+                              <option  value="" selected disabled>Created By</option>
+                              <option  value="1">User 1</option>
+                              <option  value="2">User 2</option>
+                          </select>
+                        </div>
+                        <div class="form-group col-3">
+                          <select class="form-control" placeholder="select">
+                              <option  value="" selected disabled>Updated By</option>
+                              <option  value="1">User 1</option>
+                              <option  value="2">User 2</option>
+                          </select>
+                        </div>
+    
+                        <div class="form-group col-3">
+                          <input type="date" class="form-control" placeholder="select">
+                        </div>
+                        <div class="form-group col-3">
+                          <input type="date" class="form-control" placeholder="select">
+                        </div>
+                    </div>
+                    <div class="row d-flex justify-content-center">
+                      <button class="btn_bg btn btn-sm mr-1" (click)="FilterData()" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> Search </button>
+                      <button class="btn_bg btn btn-sm" (click)="ClearFilter()"> Clear </button>
+                    </div>
+                </form>
+                <div class="d-flex justify-content-end">
+                    <a style="text-decoration: none;cursor: pointer;" class="text_color_main" (click)="getFilterState('advancefilterMode')"> <i class="fa fa-filter" ></i> Advance Filter</a>
+                </div>
+              </div>
+            </div>
+          </div>
+    
+        </div>
+        <br>
+        <br>
+        <div class="card mb-4 card_border_radius card-main-shadow" *ngIf="dataLoaded" style="padding: 20px;">
+            <div class="card-counter-5 shadow" style="overflow-x: scroll;">
+                <table datatable style="width: 200%;" id="details_gdr">
+                    <thead style="font-size: 13px;" class="table_header">
+                        <tr>
+                            <th class="t-action">Action</th> 
+                            <th class="t-action">Subscription Plan Name</th>
+                            <th class="t-text-max">Description</th>
+                            <th class="t-action">Number Of Users</th>
+                            <th class="t-text-max">Modules List</th>
+                            <th class="t-action">Days</th>
+                            <th class="t-action">Effective Date</th>
+                            <th class="t-action">Price</th>
+                            <th class="t-text-min">Status</th>
+                            <th class="t-text-min">Created At</th>
+                            <th class="t-text-min">Updated At</th>
+                            <th class="t-text-min">Created By</th>
+                            <th class="t-text-min">Updated By</th>
+                        </tr>
+                    </thead>
+                    <tbody style="font-size: 14px;">
+                        <tr *ngFor="let item of SubscriptionPlanList | paginate: { itemsPerPage: itemPage, currentPage: p }; let i = index;" style="justify-content: center; align-items:center; height:45px;">
+                          <td>
+                                <button class="btn btn-sm mr-1" (click)="editSubscriptionPlan(item)"> <i class="far fa-edit"></i> </button>
+                                <button class="btn btn-sm mr-1" (click)="validate(item.id)"> <i class="fas fa-trash-alt"></i> </button>
+                            </td>
+                            <td >{{item.subscription_name}}</td>
+                            <td >Lorem Ipsum is simply dummy text of the printing and typesetting industry. </td>
+                            <td>15</td>
+                            <td > <span class="mr-1" style="background-color: #056CB1; border-radius:10px; padding:5px;">Module 1</span> <span class="mr-1" style="background-color: #056CB1; border-radius:10px; padding:5px;">Module 2</span> <span style="background-color: #056CB1; border-radius:10px; padding:5px;">Module 3</span> </td>
+                            <td>5</td>
+                            <td>19-09-2021</td>
+                            <td>1500</td>
+                            <td>
+                                <span>Active</span>
+                            </td>
+                            <td style="text-align: center;">19-09-2021</td>
+                            <td style="text-align: center;">19-09-2021</td>
+                            <td>ADMIN</td> 
+                            <td>ADMIN</td>
+                            
+                        </tr>
+                    </tbody>
+        
+                </table>
+            </div>
+            <div class="d-flex justify-content-between" style="margin-top: 25px;">
+        
+                <form>
+                    <label for="Pages">Show &nbsp;</label>
+                    <select name="Pages" id="Pages" [(ngModel)]="itemPage" class="show-select">
+                      <option value="10">10</option>
+                      <option value="25">25</option>
+                      <option value="50">50</option>
+                      <option value="100">100</option>
+                    </select>
+                </form>
+        
+                <div>
+                    <pagination-controls (pageChange)="pageChanged($event)" previousLabel="<"
+                    nextLabel=">" ></pagination-controls>
+                </div>
+        
+                
+            </div>
+        </div>
+        <div class="card shadow mb-4 card_border_radius" *ngIf="!dataLoaded">
+            <!-- <div class="card-header py-3 card_header_table">
+                <h6 class="m-0 font-weight-bold text-white">SubscriptionPlan List</h6>
+            </div> -->
+            <div class="card-body"  style="align-items: center;">
+                <div class="sk-chase">
+                    <div class="sk-chase-dot"></div>
+                    <div class="sk-chase-dot"></div>
+                    <div class="sk-chase-dot"></div>
+                    <div class="sk-chase-dot"></div>
+                    <div class="sk-chase-dot"></div>
+                    <div class="sk-chase-dot"></div>
+                </div>
+                <p>Loading Subscription Plan List</p>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+aria-hidden="true">
+<div class="modal-dialog modal-lg modal-dialog-centered">
+
+  <div class="modal-content">
+    <div class="modal-header bg_nav_custom_1">
+      <h5 class="modal-title" id="exampleModalLongTitle" style="color: white;"><i class="fa fa-filter"></i> Advance
+        Filter</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white;">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="card-counter-5 shadow">
+      <div class="card-body" style="background-color: rgba(255, 255, 255, 0.03);" *ngIf="advancefilterMode">
+
+        <form [formGroup]="myForm" (ngSubmit)="onSubmit()" #FormCheck="ngForm">
+          <div formArrayName="arr" *ngFor="let a of myForm.get('arr').controls; let i = index">
+            <div [formGroupName]="i" style="margin-bottom: 10px;">
+              <div id="test" class="form-row">
+                <div class="form-group col-3">
+                  <select  #mySelect name="selectFields"  (change)='onOptionsSelected(mySelect.value, i)'
+                    formControlName="selectFields" class="form-control" placeholder="select">
+                    <option value="" selected disabled>Select Fields</option>
+                    <option value="id">Subscription ID</option>
+                    <option value="subscription_name">Subscription Name</option>
+                    <option value="number_of_users">Number of Users</option>
+                    <option value="modules_list">Modules list</option>
+                    <option value="days">Days</option>
+                    <option value="price">Price</option>
+                    <option value="valid_till">Valid till</option>
+                    <option value="Effective">Effective</option>
+                    <option value="status">Remarks</option>
+                    <option value="created_at">Created at</option>
+                    <option value="created_by">Created by</option>
+                    <option value="status">Status</option>
+                  </select>
+                </div>
+                <div class="form-group col-3">
+
+                  <select name="selectCondition" formControlName="selectCondition" class="form-control ddlcondition"
+                    placeholder="select">
+                    <option value="" selected disabled>Select Condition</option>
+                    <option value="=">Equal to</option>
+                    <option value="!=">Not Equal to</option>
+                    <option value="like">Contain</option>
+                  </select>
+                </div>
+                <div class="form-group col-3" id="some">
+                  <input formControlName="enterValue" type="text" id="numberinput{{i}}" autofocus autocomplete="off"
+                     class="form-control" placeholder="Enter Value" name="enterValue">
+
+                     <select formControlName="enterValue" class="form-control" id="ddlstatus{{i}}"
+                     placeholder="select" style="display: none;" >
+                     <option selected disabled value="">Select</option>
+                     <option value="true">Active </option>
+                     <option value="false">Inactive </option>
+                   </select>
+                   <select formControlName="enterValue" class="form-control" id="ddlcreatedBy{{i}}"
+                   placeholder="select" style="display: none;" >
+                   <option selected disabled value="">Select</option>
+                   <option value="1">SuperAdmin </option>
+                   <option value="2">Buyer </option>
+                   <option value="3">Seller </option>
+
+                 </select>
+                </div>
+                 <div class="form-group col-3">
+                  <button style="margin-right: 5px;width: 50px;" class="btn_bg btn btn-sm" (click)="closeItem(i)"><i
+                      class="fas fa-minus"></i></button>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class=" row justify-content-center" style="color: red; padding-bottom: 15px;"
+            *ngIf="FormCheck.form.invalid && FormCheck.form.touched  ">
+            Please enter Input ID/values
+          </div>
+          <div class="row d-flex justify-content-center">
+            <button style="margin-right: 5px;" class="btn_bg btn btn-sm"
+              (click)="addItem()" [disabled]="FormCheck.form.invalid "><i class="fas fa-plus"></i></button>
+            <button class="btn_bg btn btn-sm mr-1"  type="submit"
+              (click)="AdvancesFilterData()" [disabled]="FormCheck.form.invalid " > Search </button>
+            <button class="btn_bg btn btn-sm" (click)="ResetAdvanceFilter()"> Reset Filter </button>
+          </div>
+        </form>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Delete</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Do you really want to delete this SubscriptionPlan ?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger btn-sm" (click)="cancel()">No</button>
+          <button type="button" class="btn btn-success btn-sm" (click)="deleteSubscriptionPlan()">Yes</button>
+        </div>
+      </div>
+    </div>
+</div>

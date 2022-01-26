@@ -1,0 +1,451 @@
+<div class="container-fluid">
+  <div class="row d-flex justify-content-start">
+    <div class="col-12">
+      <h3>Dashboard</h3>
+    </div>
+  </div>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" aria-current="page">Analytics</li>
+    </ol>
+  </nav>
+</div>
+
+<div class="container-fluid">
+  <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutAlign="center">
+    <div fxFlex="25%">
+      <div class="card-counter">
+        <h4 class="count-name">Total number of buyers</h4>
+        <h3 class="count-numbers">12</h3>
+      </div>
+    </div>
+    <div fxFlex="25%">
+      <div class="card-counter">
+        <h4 class="count-name">Total number of sellers</h4>
+        <h3 class="count-numbers">599</h3>
+      </div>
+    </div>
+    <div fxFlex="25%">
+      <div class="card-counter">
+        <h4 class="count-name">Total number of orders</h4>
+        <h3 class="count-numbers">6875</h3>
+      </div>
+    </div>
+    <div fxFlex="25%">
+      <div class="card-counter">
+        <h4 class="count-name">Total number of sub admin</h4>
+        <h3 class="count-numbers">35</h3>
+      </div>
+    </div>
+  </div>
+
+
+  <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutWrap fxLayoutAlign="space-between center"
+    style="padding: 10px;">
+
+    <div fxFlex="30%">
+      <h3 class="b-h1">Order Status</h3>
+      <div class="card-counter-5">
+
+        <table datatable style="width: 100%;" [dtOptions]="dtOptions">
+          <thead>
+            <tr>
+              <th>Order</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tr>
+            <td>Order1</td>
+            <td>Status</td>
+          </tr>
+          <tr>
+            <td>Order1</td>
+            <td>Status</td>
+          </tr>
+          <tr>
+            <td>Order1</td>
+            <td>Status</td>
+          </tr>
+          <tr>
+            <td>Order1</td>
+            <td>Status</td>
+          </tr>
+
+        </table>
+      </div>
+
+      <p class="view"><a>View all</a></p>
+    </div>
+    <div fxFlex="30%">
+      <h3 class="b-h1">Parts request count</h3>
+      <div class="card-counter-5">
+
+        <table datatable style="width: 100%;" [dtOptions]="dtOptions">
+          <thead>
+            <tr>
+              <th>Parts</th>
+              <th>count</th>
+            </tr>
+          </thead>
+          <tr>
+            <td>Parts1</td>
+            <td>10</td>
+          </tr>
+          <tr>
+            <td>Parts1</td>
+            <td>10</td>
+          </tr>
+          <tr>
+            <td>Parts1</td>
+            <td>10</td>
+          </tr>
+          <tr>
+            <td>Parts1</td>
+            <td>10</td>
+          </tr>
+
+        </table>
+      </div>
+
+      <p class="view"><a>View all</a></p>
+    </div>
+    <div fxFlex="30%">
+      <h3 class="b-h1">Sales history</h3>
+      <div class="card-counter-5">
+
+        <table datatable style="width: 100%;" [dtOptions]="dtOptions">
+          <thead>
+            <tr>
+              <th>Order</th>
+              <th>Revenue</th>
+            </tr>
+          </thead>
+          <tr>
+            <td>Order1</td>
+            <td>100</td>
+          </tr>
+          <tr>
+            <td>Order1</td>
+            <td>100</td>
+          </tr>
+          <tr>
+            <td>Order1</td>
+            <td>100</td>
+          </tr>
+          <tr>
+            <td>Order1</td>
+            <td>100</td>
+          </tr>
+
+        </table>
+      </div>
+
+      <p class="view"><a>View all</a></p>
+    </div>
+    <div fxFlex="30%">
+      <h3 class="b-h1">Total Sales</h3>
+      <div class="card-counter-5">
+
+        <table datatable style="width: 100%;" [dtOptions]="dtOptions">
+          <thead>
+            <tr>
+              <th>Order</th>
+              <th>Revenue</th>
+            </tr>
+          </thead>
+          <tr>
+            <td>Parts1</td>
+            <td>100</td>
+          </tr>
+          <tr>
+            <td>Parts1</td>
+            <td>100</td>
+          </tr>
+          <tr>
+            <td>Parts1</td>
+            <td>100</td>
+          </tr>
+          <tr>
+            <td>Parts1</td>
+            <td>100</td>
+          </tr>
+
+        </table>
+      </div>
+
+      <p class="view"><a>View all</a></p>
+    </div>
+    <div fxFlex="30%">
+      <h3 class="b-h1">New category request</h3>
+      <div class="card-counter-5">
+
+        <table datatable style="width: 100%;" [dtOptions]="dtOptions">
+          <thead>
+            <tr>
+              <th>Order</th>
+              <th>Revenue</th>
+            </tr>
+          </thead>
+          <tr>
+            <td>Parts1</td>
+            <td>100</td>
+          </tr>
+          <tr>
+            <td>Parts1</td>
+            <td>100</td>
+          </tr>
+          <tr>
+            <td>Parts1</td>
+            <td>100</td>
+          </tr>
+          <tr>
+            <td>Parts1</td>
+            <td>100</td>
+          </tr>
+
+        </table>
+      </div>
+
+      <p class="view"><a>View all</a></p>
+    </div>
+    <div fxFlex="30%">
+      <h3 class="b-h1">Make offer count</h3>
+      <div class="card-counter-5">
+
+        <table datatable style="width: 100%;" [dtOptions]="dtOptions">
+          <thead>
+            <tr>
+              <th>Order</th>
+              <th>count</th>
+            </tr>
+          </thead>
+          <tr>
+            <td>offer1</td>
+            <td>100</td>
+          </tr>
+          <tr>
+            <td>offer1</td>
+            <td>100</td>
+          </tr>
+          <tr>
+            <td>offer1</td>
+            <td>100</td>
+          </tr>
+          <tr>
+            <td>offer1</td>
+            <td>100</td>
+          </tr>
+
+        </table>
+      </div>
+
+      <p class="view"><a>View all</a></p>
+    </div>
+    <div fxFlex="48%">
+      <h3 class="b-h1">Expiry of buyers subscription</h3>
+      <div class="card-counter-5">
+
+        <table datatable style="width: 100%;" [dtOptions]="dtOptions">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Code</th>
+              <th>Expiry</th>
+            </tr>
+          </thead>
+          <tr>
+            <td>buyername1</td>
+            <td>123456</td>
+            <td>30-15-2021</td>
+          </tr>
+          <tr>
+            <td>buyername2</td>
+            <td>123456</td>
+            <td>30-15-2021</td>
+          </tr>
+          <tr>
+            <td>buyername3</td>
+            <td>123456</td>
+            <td>30-15-2021</td>
+          </tr>
+          <tr>
+            <td>buyername4</td>
+            <td>123456</td>
+            <td>30-15-2021</td>
+          </tr>
+
+        </table>
+      </div>
+
+      <p class="view"><a>View all</a></p>
+    </div>
+    <div fxFlex="50%">
+      <h3 class="b-h1">Make offer count:</h3>
+      <div class="card-counter-5">
+
+        <table datatable style="width: 100%;" [dtOptions]="dtOptions">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Code</th>
+              <th>Expiry</th>
+
+            </tr>
+          </thead>
+          <tr>
+            <td>buyername4</td>
+            <td>123456</td>
+            <td>30-15-2021</td>
+          </tr>
+          <tr>
+            <td>buyername4</td>
+            <td>123456</td>
+            <td>30-15-2021</td>
+          </tr>
+          <tr>
+            <td>buyername4</td>
+            <td>123456</td>
+            <td>30-15-2021</td>
+          </tr>
+          <tr>
+            <td>buyername4</td>
+            <td>123456</td>
+            <td>30-15-2021</td>
+          </tr>
+
+        </table>
+      </div>
+
+      <p class="view"><a>View all</a></p>
+    </div>
+    <div fxFlex="50%">
+      <h3 class="b-h1">Top 5 Buyer</h3>
+      <div class="card-counter-1">
+
+        <div class="l-1">
+          <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutAlign="center" class="box-01">
+            <div fxFlex="60px">
+              <img class="pro-i" src="assets/Logo_mini.png" alt="Logo">
+
+            </div>
+            <div fxFlex>
+              <h5 class="u-t">User Name</h5>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+            </div>
+          </div>
+          <hr />
+          <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutAlign="center" class="box-01">
+            <div fxFlex="60px">
+              <img class="pro-i" src="assets/Logo_mini.png" alt="Logo">
+
+            </div>
+            <div fxFlex>
+              <h5 class="u-t">User Name</h5>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+            </div>
+          </div>
+          <hr />
+          <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutAlign="center" class="box-01">
+            <div fxFlex="60px">
+              <img class="pro-i" src="assets/Logo_mini.png" alt="Logo">
+
+            </div>
+            <div fxFlex>
+              <h5 class="u-t">User Name</h5>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+            </div>
+          </div>
+          <hr />
+
+          <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutAlign="center" class="box-01">
+            <div fxFlex="60px">
+              <img class="pro-i" src="assets/Logo_mini.png" alt="Logo">
+
+            </div>
+            <div fxFlex>
+              <h5 class="u-t">User Name</h5>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+            </div>
+          </div>
+          <hr />
+          <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutAlign="center" class="box-01">
+            <div fxFlex="60px">
+              <img class="pro-i" src="assets/Logo_mini.png" alt="Logo">
+
+            </div>
+            <div fxFlex>
+              <h5 class="u-t">User Name</h5>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+            </div>
+          </div>
+          <hr />
+        </div>
+
+      </div>
+    </div>
+    <div fxFlex="50%">
+      <h3 class="b-h1">Top 5 Seller</h3>
+      <div class="card-counter-1">
+        <div class="l-1">
+          <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutAlign="center" class="box-01">
+            <div fxFlex="60px">
+              <img class="pro-i" src="assets/Logo_mini.png" alt="Logo">
+
+            </div>
+            <div fxFlex>
+              <h5 class="u-t">User Name</h5>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+            </div>
+          </div>
+          <hr />
+          <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutAlign="center" class="box-01">
+            <div fxFlex="60px">
+              <img class="pro-i" src="assets/Logo_mini.png" alt="Logo">
+
+            </div>
+            <div fxFlex>
+              <h5 class="u-t">User Name</h5>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+            </div>
+          </div>
+          <hr />
+          <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutAlign="center" class="box-01">
+            <div fxFlex="60px">
+              <img class="pro-i" src="assets/Logo_mini.png" alt="Logo">
+
+            </div>
+            <div fxFlex>
+              <h5 class="u-t">User Name</h5>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+            </div>
+          </div>
+          <hr />
+
+          <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutAlign="center" class="box-01">
+            <div fxFlex="60px">
+              <img class="pro-i" src="assets/Logo_mini.png" alt="Logo">
+
+            </div>
+            <div fxFlex>
+              <h5 class="u-t">User Name</h5>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+            </div>
+          </div>
+          <hr />
+          <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutAlign="center" class="box-01">
+            <div fxFlex="60px">
+              <img class="pro-i" src="assets/Logo_mini.png" alt="Logo">
+
+            </div>
+            <div fxFlex>
+              <h5 class="u-t">User Name</h5>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+            </div>
+          </div>
+          <hr />
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

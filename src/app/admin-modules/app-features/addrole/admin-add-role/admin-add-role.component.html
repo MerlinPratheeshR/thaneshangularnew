@@ -1,0 +1,99 @@
+<div class="container-fluid">
+    <h4 class="text_color_black" *ngIf="addmode"><b>Add New Role</b></h4>
+    <h4 class="text_color_black" *ngIf="editmode"><b>Update Role</b></h4>  
+    <h4 class="text_color_black" *ngIf="viewmode"><b>Role Details</b></h4>  
+    <div class="card card_border_radius card_top_shadow">
+        <div style="padding: 20px;">
+
+            <form [formGroup]="addRoleForm">
+                <div class="form-group row d-flex justify-content-center">
+                    <label for="" class="col-sm-2 col-form-label">Role Name</label>
+                    <div class="col-sm-6">
+                        <input type="text" formControlName="role_name" class="form-control">
+                        <span class="text-danger"
+                        *ngIf="(addRoleForm.controls.role_name.touched) && addRoleForm.controls.role_name.errors?.required">
+                        Role Name is required
+                        </span>
+
+                        <mat-error class="text-danger" *ngIf="addRoleForm.controls.role_name.errors?.pattern">
+                            Should not use special char
+                           </mat-error>
+
+                    </div>
+                </div>
+                <div class="form-group row d-flex justify-content-center">
+                    <label for="" class="col-sm-2 col-form-label">Role Code</label>
+                    <div class="col-sm-6">
+                        <input type="text" formControlName="role_code" class="form-control">
+                        <span class="text-danger"
+                        *ngIf="(addRoleForm.controls.role_code.touched) && addRoleForm.controls.role_code.errors?.required">
+                        Role Code is required
+                        </span>
+
+                        <mat-error class="text-danger" *ngIf="addRoleForm.controls.role_code.errors?.pattern">
+                            Should not use special char
+                           </mat-error>
+
+                    </div>
+                </div>
+                <div class="form-group row d-flex justify-content-center">
+                    <label for="" class="col-sm-2 col-form-label">Action</label>
+                    <div class="col-sm-6">
+                        <input type="text" formControlName="action" class="form-control">
+                        <span class="text-danger"
+                        *ngIf="(addRoleForm.controls.action.touched) && addRoleForm.controls.action.errors?.required">
+                        Action is required
+                        </span>
+
+                        <mat-error class="text-danger" *ngIf="addRoleForm.controls.action.errors?.pattern">
+                            Should not use special char
+                           </mat-error>
+
+                    </div>
+                </div>
+                <div class="form-group row d-flex justify-content-center">
+                    <label for=""  class="col-sm-2 col-form-label">Status</label>
+                    <div class="col-sm-6">
+                        <select formControlName="status" class="form-control">
+                            <option value="true">Active</option>
+                            <option value="false">Inactive</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+            <div class="table-responsive">
+                <table datatable class="table table-bordered"  style="border: none;">
+                    <thead style="font-size: 14px;" class="table_header">
+                      <tr>
+                          <th style="font-weight: 100;">S.No</th>
+                          <th style="font-weight: 100;">Module Name</th>
+                          <th style="font-weight: 100;"><input type="checkbox"> Full</th>
+                          <th style="font-weight: 100;"><input type="checkbox"> View</th>
+                          <th style="font-weight: 100;"><input type="checkbox"> Add</th>
+                          <th style="font-weight: 100;"><input type="checkbox"> Modify</th>
+                          <th style="font-weight: 100;"><input type="checkbox"> Delete</th>
+                          <th style="font-weight: 100;"><input type="checkbox"> Clone</th>
+                      </tr>
+                    </thead>
+                    <tbody style="font-size: 14px;">
+                      <tr *ngFor="let item of [1,2,3,4,5,6,7,8,9,10]; let i = index;">
+                        <th>{{i+1}}</th>
+                        <td>MODULE {{i+1}}</td>
+                        <td><input type="checkbox" name="" id=""></td>
+                        <td><input type="checkbox" name="" id=""></td>
+                        <td><input type="checkbox" name="" id=""></td>
+                        <td><input type="checkbox" name="" id=""></td>
+                        <td><input type="checkbox" name="" id=""></td>
+                        <td><input type="checkbox" name="" id=""></td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+            <div class="d-flex justify-content-center">
+                <button type="button" class="btn btn_bg btn-sm mr-1" (click)="addRole()" *ngIf="addmode">Save</button>
+                <button type="button" class="btn btn_bg btn-sm mr-1" (click)="updateRole()" *ngIf="editmode">Update</button>
+                <button type="button" class="btn btn_bg btn-sm mr-1" (click)="cancel()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

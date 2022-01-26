@@ -1,0 +1,63 @@
+
+<div class="container-fluid">
+    <div style="text-align: left;">
+      <div class="ng-autocomplete">
+        <h3><b>Search Ecells</b></h3>
+          <ng-autocomplete 
+            [data]="EcellsList"
+            [searchKeyword]="'collegename'"
+            (selected)='selectEvent($event)'
+            (inputChanged)='onChangeSearch($event)'
+            (inputFocused)='onFocused($event)'
+            [itemTemplate]="itemTemplate"
+            [notFoundTemplate]="notFoundTemplate">                                 
+          </ng-autocomplete>
+          
+          <ng-template #itemTemplate let-item>
+          <a [innerHTML]="item.collegename"></a>
+          </ng-template>
+          
+          <ng-template #notFoundTemplate let-notFound>
+          <div [innerHTML]="notFound"></div>
+          </ng-template>
+        </div>
+        <div class="cards-list">
+            <div class="card 1" *ngFor="let item of EcellsList | filterBy:ecellsFilter | paginate: { itemsPerPage: 12, currentPage: p }" (click)="goto(item.uid)">
+              <div class="card_image"> <img src="{{item.logo}}" /> </div>
+              <div class="card_title title-black">
+                <p>{{item.collegename}}</p>
+              </div>
+            </div>
+        </div>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+</div>
+
+
+      <!-- <div class="card 2">
+      <div class="card_image">
+        <img src="https://cdn.blackmilkclothing.com/media/wysiwyg/Wallpapers/PhoneWallpapers_FloralCoral.jpg" />
+        </div>
+      <div class="card_title title-white">
+        <p>Card Title</p>
+      </div>
+    </div>
+    
+    <div class="card 3">
+      <div class="card_image">
+        <img src="https://media.giphy.com/media/10SvWCbt1ytWCc/giphy.gif" />
+      </div>
+      <div class="card_title">
+        <p>Card Title</p>
+      </div>
+    </div>
+      
+      <div class="card 4">
+      <div class="card_image">
+        <img src="https://media.giphy.com/media/LwIyvaNcnzsD6/giphy.gif" />
+        </div>
+      <div class="card_title title-black">
+        <p>Card Title</p>
+      </div>
+      </div> -->
+

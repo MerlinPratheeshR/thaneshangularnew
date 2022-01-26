@@ -1,1 +1,387 @@
 /* You can add global styles to this file, and also import other style files */
+@import "../node_modules/ag-grid-community/dist/styles/ag-grid.css";
+@import "../node_modules/ag-grid-community/dist/styles/ag-theme-alpine.css";
+@import "~@ng-select/ng-select/themes/default.theme.css";
+@import '~owl.carousel/dist/assets/owl.carousel.css';
+
+// /* Add application styles & imports to this file! */x`
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~bs-stepper/dist/css/bs-stepper.min.css';
+
+.ngx-pagination .current{
+    /*background-color: #056CB1 !important;*/
+    padding: 0.1875rem 0.625rem;
+    background: #2199e8;
+    color: #fefefe;
+    cursor: default;
+}
+.t-action,.t-text-min,
+.t-text-at,.t-text-by{
+  border-right: 1.5px solid #fff !important;
+}
+
+.card_border_radius {
+    border-radius: 10px;
+}
+.card_header_table {
+    background-color: #056CB1;;
+}
+
+.table_header {
+    background-color: #056CB1;
+    color: white;
+    text-align: left;
+    height: 25px !important;
+}
+
+.table_footer {
+    background-color: #E6F0F7;
+}
+
+.text_color_main {
+    color: #3381B4;
+}
+
+.bg_nav_custom_1 {
+    background-color: #056CB1;
+}
+
+.bg_nav_custom_2 {
+    background-color: #ffffff;
+}
+
+.swal2-styled.swal2-confirm {
+    background-color: #056CB1 !important;
+
+}
+
+.btn_bg {
+    background-color: #056CB1;
+    color: white;
+    border-radius: 5px;
+    font-size: 12px !important;
+    width: 150px;
+    height: 32px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.btn_bg:hover {
+    background-color: #056CB1;
+    color: rgb(226, 226, 226);
+    border-radius: 5px;
+    font-size: 12px !important;
+    width: 150px;
+    height: 32px;
+}
+
+.btn_cancel {
+    background-color: #343a40;
+    color: white;
+    border-radius: 5px;
+    font-size: 12px !important;
+}
+
+.btn_cancel:hover {
+    background-color: #343a40;
+    color: rgb(226, 226, 226);
+    border-radius: 5px;
+    font-size: 12px !important;
+}
+
+.custom_bg_main {
+    background-color: #056CB1;
+}
+
+.card_shadow {
+box-shadow:
+  0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+  0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+  0 12.5px 10px rgba(0, 0, 0, 0.06),
+  0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+  0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+  0 100px 80px rgba(0, 0, 0, 0.12);
+}
+
+.card_bottom_shadow {
+    box-shadow: 0 8px 26px -13px #004b7d;;
+  }
+
+.card_top_shadow {
+    box-shadow: 0 8px 26px -13px #004b7d;
+  }
+.card_top_shadow2 {
+    box-shadow: 0 8px 26px -13px #000000; 
+}
+
+
+  table tr:first-child th:first-child {
+    border-top-left-radius: 10px;
+  }
+
+  table tr:first-child th:last-child {
+    border-top-right-radius: 10px;
+  }
+  
+  table tr:last-child td:first-child {
+    border-bottom-left-radius: 10px;
+  }
+
+  table tr:last-child td:last-child {
+    border-bottom-right-radius: 10px;
+  }
+
+table tr:nth-child(odd) td{
+    background-color: #FFFFFF, 100%;
+    border: none;
+    //border-bottom: 1px solid black;
+}
+table tr:nth-child(even) td{
+    background-color: #056CB10F;
+    border: none;
+    //border-bottom: 1px solid black;
+}
+
+table thead tr  {
+    width: max-content;
+    word-wrap: normal;
+    height: 40px !important;
+    letter-spacing: 1.5px;
+}
+
+table tr td{
+    border: none;
+    text-align: left;
+    margin-right: 25px !important;
+}
+table tr {
+    height: 50px;
+    text-align: left;
+}
+
+table {
+    // box-shadow: 0 8px 26px -13px #004b7d;
+    border: none !important;
+    color: black;
+}
+
+.title-header{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 25px;
+    color: #45484D;
+}
+.card-main-shadow{
+    background: #FFFFFF;
+    box-shadow: 0px 12px 54px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+}
+
+.module_tilte{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    color: #45484D;
+    padding-bottom: 2px;
+}
+
+.filter-badge{
+    border-radius: 6px;
+    background-color: #86B0CC;
+    color: white;
+    padding: 8px;
+    height: 28px;
+}
+
+.show-select{
+    padding: 3px;
+    background-color: #056CB1;
+    color: white;
+    border-radius: 5px;
+    border: none;
+}
+
+
+// #details_gdr thead tr th:not(:last-child) {
+//     border-right: 1px solid white;
+//   //  height   : 50%;
+// }
+
+
+.t-action{
+    text-align: center !important;
+    width:150px;
+}
+
+.t-text-max{
+    width: 250px; text-align: center !important;
+}
+
+.t-image{
+    text-align: center !important; width:50px;
+}
+.t-text-min{
+    width: 50px; text-align: center !important;
+}
+.t-text-at{
+   width: 150px; text-align: center !important;
+}
+
+.t-text-by{
+  width: 80px; text-align: center !important;
+}
+
+  
+
+.card-counter-5 {
+  box-shadow: 2px 2px 10px #dadada;
+  margin: 5px;
+  // padding: 20px 20px;
+  background-color: #fff;
+  // height: 350px;
+  border-radius: 10px;
+  transition: 0.3s linear all;
+  color: #222222;
+  // overflow-y: scroll;
+  overflow: hidden;
+}
+
+
+  .sk-chase {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    animation: sk-chase 2.5s infinite linear both;
+  }
+  
+  .sk-chase-dot {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0; 
+    animation: sk-chase-dot 2.0s infinite ease-in-out both; 
+  }
+  
+  .sk-chase-dot:before {
+    content: '';
+    display: block;
+    width: 25%;
+    height: 25%;
+    background-color: rgb(71, 197, 255);
+    border-radius: 100%;
+    animation: sk-chase-dot-before 2.0s infinite ease-in-out both; 
+  }
+  
+  .sk-chase-dot:nth-child(1) { animation-delay: -1.1s; }
+  .sk-chase-dot:nth-child(2) { animation-delay: -1.0s; }
+  .sk-chase-dot:nth-child(3) { animation-delay: -0.9s; }
+  .sk-chase-dot:nth-child(4) { animation-delay: -0.8s; }
+  .sk-chase-dot:nth-child(5) { animation-delay: -0.7s; }
+  .sk-chase-dot:nth-child(6) { animation-delay: -0.6s; }
+  .sk-chase-dot:nth-child(1):before { animation-delay: -1.1s; }
+  .sk-chase-dot:nth-child(2):before { animation-delay: -1.0s; }
+  .sk-chase-dot:nth-child(3):before { animation-delay: -0.9s; }
+  .sk-chase-dot:nth-child(4):before { animation-delay: -0.8s; }
+  .sk-chase-dot:nth-child(5):before { animation-delay: -0.7s; }
+  .sk-chase-dot:nth-child(6):before { animation-delay: -0.6s; }
+  
+  @keyframes sk-chase {
+    100% { transform: rotate(360deg); } 
+  }
+  
+  @keyframes sk-chase-dot {
+    80%, 100% { transform: rotate(360deg); } 
+  }
+  
+  @keyframes sk-chase-dot-before {
+    50% {
+      transform: scale(0.4); 
+    } 100%, 0% {
+      transform: scale(1.0); 
+    } 
+  }
+
+
+  .text_color_black{
+    color: black !important;
+  }
+
+
+
+    //By mani
+    .tableFixHead { overflow-y: auto; height: 527px; }
+
+    /* Just common table stuff. */
+    .tableFixHead thead th {
+      position: sticky;
+      top: 0;
+      background-color: #056CB1 !important;
+    }
+    table  { border-collapse: collapse; width: 100%; padding-bottom: 40px !important;}
+    th, td { padding: 8px 16px; }
+    th     { background-color: #056CB1 !important; }
+    
+
+
+    .swal2-container.swal2-center>.swal2-popup {
+      grid-column: 2;
+      grid-row: 2;
+      align-self: end !important;
+      margin-top: 20% !important;
+      width: 22% !important;
+      justify-self: center;
+  }
+  tbody ,thead{
+    white-space: nowrap;
+  }
+.swal2-html-container{
+text-transform: capitalize !important;
+font-size: 17px !important;
+}
+
+table{
+  padding: 0px!important;
+  border-spacing: 1px !important;
+  border-collapse: initial !important;
+  text-transform: capitalize !important;
+}
+
+
+  /* Scroll bar CSS */
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 8px !important;
+/* background: #000; */
+}
+::-webkit-scrollbar-thumb {
+    background-color: #056CB1 !important;
+}
+
+
+
+
+#details_gdr thead tr th:not(:last-child) {
+  border-right: 0px solid #fff !important;
+  height: 50% !important;
+}
+
+.filter-badge {
+ visibility: hidden;
+ height: 1px !important;
+}
+/*.dataTables_empty,.dataTables_length,.dataTables_filter,.dataTables_info,.dataTables_paginate .paging_simple_numbers{
+  visibility: hidden !important;
+  height: 1px !important;
+}
+#details_gdr_paginate{
+  visibility: hidden !important;
+}*/
+
+
+.form-row{
+  text-align: center;
+  align-items: center;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

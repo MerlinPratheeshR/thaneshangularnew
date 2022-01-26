@@ -1,0 +1,22 @@
+/* width */
+:host::ng-deep .shadow::-webkit-scrollbar {
+    width: 90% !important;
+    height: 8px;
+  }
+  
+  /* Track */
+  :host::ng-deep .shadow::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px #abddff !important; 
+    border-radius: 5px !important;
+  }
+   
+  /* Handle */
+  :host::ng-deep .shadow::-webkit-scrollbar-thumb {
+    background: #056CB1 !important; 
+    border-radius: 5px !important;
+  }
+  
+  /* Handle on hover */
+  :host::ng-deep .shadow::-webkit-scrollbar-thumb:hover {
+    background: #056CB1 !important; 
+  }

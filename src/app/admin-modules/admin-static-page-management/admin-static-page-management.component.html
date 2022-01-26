@@ -1,0 +1,323 @@
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="module_tilte ml-1">Static Management List</div>
+    </div>
+    <div class="col-md-6">
+      <button type="button" class="btn btn_bg btn-sm mb-1 mr-1" (click)="addStaticPage()"
+        style="font-size: 12px;margin-top: 4px;float: right;"><i class="fas fa-plus"></i> </button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="accordion" id="accordionExample">
+        <div class="card-counter-5 shadow">
+          <div class="card-header bg_nav_custom_1" id="headingOne" style="height: 60px;" *ngIf="!FilteredState">
+
+            <div class="row">
+              <div class="col-12 d-flex justify-content-between">
+                <div>
+                  <button style="color: white;" class="btn btn-sm mb-2" type="button">
+                    <i class="fa fa-arrow-circle-right" style="padding:0px 8px 0px 0px" aria-hidden="true"></i>
+                  </button>
+                </div>
+                <div>
+                  <button style="color: white;" class="btn btn-sm mb-2" type="button" data-toggle="collapse"
+                    data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Filters <i class="fas fa-chevron-down"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-header bg_nav_custom_2" id="headingOne" style="height: 60px;" *ngIf="FilteredState">
+            <div class="row">
+              <div class="col-12 d-flex justify-content-between">
+                <div class="mt-2">
+                  <span style="font-size: 12px;" class="filter-badge mr-1" *ngFor="let item of [1,2,3,4,5]">Field Name:
+                    Value <i class="ml-2 mr-1 fas fa-times"></i> </span>
+                </div>
+                <div>
+                  <button style="color: #056CB1;" class="btn btn-sm mb-2" type="button" data-toggle="collapse"
+                    data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Reset Filters <i class="fas fa-chevron-down"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body" style="background-color: rgba(255, 255, 255, 0.03);">
+              <form [formGroup]="advanceFilterForm">
+                <div class="form-row">
+                  <div class="form-group col-3"> <label>Status</label>
+                    <select formControlName="status" class="form-control" placeholder="select">
+                      <option value="" selected disabled>Status</option>
+                      <option value="1">Active</option>
+                      <option value="2">In active</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-3"> <label>Created By</label>
+                    <select formControlName="created_by" class="form-control" placeholder="select">
+                      <option value="" selected disabled>Created By</option>
+                      <ng-container *ngFor="let item of UserList">
+                        <option value="{{item.id}}">{{item.user_name}}</option>
+                      </ng-container>
+                    </select>
+                  </div>
+                  <div class="form-group col-3">
+                    <label>Updated By</label>
+                    <select formControlName="modified_by" class="form-control" placeholder="Updated By">
+                      <option value="" selected disabled>Updated By</option>
+                      <ng-container *ngFor="let item of UserList">
+                        <option value="{{item.id}}">{{item.user_name}}</option>
+                      </ng-container>
+                    </select>
+                  </div>
+
+                  <div class="form-group col-3"><label>Created At</label>
+                    <input type="date" formControlName="created_at" class="form-control" placeholder="Created At">
+                  </div>
+                  <div class="form-group col-3"><label>Updated At</label>
+                    <input type="date" formControlName="modified_at" class="form-control" placeholder="Modified At">
+                  </div>
+                </div>
+                <div class="row d-flex justify-content-center">
+                  <button class="btn_bg btn btn-sm mr-1" (click)="FilterData()" data-toggle="collapse"
+                    data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> Search </button>
+                  <button class="btn_bg btn btn-sm" (click)="ClearFilter()"> Clear </button>
+                </div>
+              </form>
+              <div class="d-flex justify-content-end">
+                <a style="text-decoration: none;cursor: pointer;" class="text_color_main" (click)="getFilterState('advancefilterMode')">
+                  <i class="fa fa-filter"></i> Advance Filter</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <br>
+      <div class="card mb-4 card_border_radius card-main-shadow" *ngIf="dataLoaded" style="padding: 20px;">
+
+        <div [ngClass]="{'tableFixHead': StaticList && StaticList.length > 10 }" class=""
+          style="overflow-x: scroll;">
+          <table datatable style="width: 130%;" id="details_gdr">
+            <thead style="font-size: 13px;" class="table_header">
+              <tr>
+                <th class="t-action">Action</th>
+                <th style="padding: 10px;">S.No</th>
+                <th>Static Page Name</th>
+                <th>Page Title</th>
+                <th>Meta Tag</th>
+                <th>Content</th>
+                <th>Effective Date</th>
+                <th>Status</th>
+                <th>Created At</th>
+                <th>Created By</th>
+                <th>Updated At</th>
+                <th>Updated By</th>
+              </tr>
+            </thead>
+            <tbody style="font-size: 14px;" *ngIf="StaticList ?.length > 0">
+              <tr
+                *ngFor="let item of StaticList | paginate: { itemsPerPage: itemPage, currentPage: p }; let i = index;"
+                style="justify-content: center; align-items:center; height:45px;">
+                <td style="text-align: center !important;">
+                  <button class="btn btn-sm mr-1" (click)="editFeatures(item)"> <i class="fa fa-eye"
+                      aria-hidden="true"></i> </button>
+                  <button class="btn btn-sm mr-1" (click)="cloneFeatures(item)"> <i class="fa fa-clone"
+                      aria-hidden="true"></i> </button>
+                  <button class="btn btn-sm mr-1" (click)="editCategoryRequestStatus(item)"> <i class="far fa-edit"></i>
+                  </button>
+                  <button class="btn btn-sm mr-1" (click)="validate(item.cat_req_status_id)"> <i
+                      class="fas fa-trash-alt"></i> </button>
+                </td>
+                <td style="word-wrap: break-word; width: 20%;">{{<item class="static_page_name"></item> | lowercase}}</td>
+                <td>{{item.remarks | lowercase}}</td>
+                <td>
+                  <span *ngIf="item.status == true">Active</span>
+                  <span *ngIf="item.status == false">Inactive</span>
+                </td>
+                <td style="text-align: center;">{{item.created_at | date:'medium'}}</td>
+                <td style="text-align: center;">{{item.modified_at | date:'medium'}}</td>
+                <!-- <td>{{item.user_name}}</td>
+                            
+                           <td>{{item.user_name}}</td> -->
+
+                <td>SUPER ADMIN</td>
+                <td>SUPER ADMIN</td>
+                
+                <td>SUPER ADMIN</td>
+                <td>SUPER ADMIN</td>
+                
+                <td>SUPER ADMIN</td>
+                <td>SUPER ADMIN</td>
+
+              </tr>
+            </tbody>
+          </table>
+          <div class="row mt-3" *ngIf="StaticList ?.length === 0">
+            <div class="col-12 d-flex justify-content-center">
+              <h4 style="color: black;"><b>No Data Available</b></h4>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between" style="margin-top: 25px;">
+
+          <form>
+            <label for="Pages">Show &nbsp;</label>
+            <select name="Pages" id="Pages" [(ngModel)]="itemPage" class="show-select">
+              <option value="10">10</option>
+              <option value="25">25</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+            </select>
+          </form>
+
+          <div>
+            <pagination-controls (pageChange)="pageChanged($event)" previousLabel="<" nextLabel=">">
+            </pagination-controls>
+          </div>
+
+
+        </div>
+      </div>
+      <div class="card shadow mb-4 card_border_radius" *ngIf="!dataLoaded">
+        <!-- <div class="card-header py-3 card_header_table">
+              <h6 class="m-0 font-weight-bold text-white">SMS List</h6>
+          </div> -->
+        <div class="card-body" style="align-items: center;">
+          <div class="sk-chase">
+            <div class="sk-chase-dot"></div>
+            <div class="sk-chase-dot"></div>
+            <div class="sk-chase-dot"></div>
+            <div class="sk-chase-dot"></div>
+            <div class="sk-chase-dot"></div>
+            <div class="sk-chase-dot"></div>
+          </div>
+          <p>Loading CategoryRequestStatus List</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+</div>
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+
+    <div class="modal-content">
+      <div class="modal-header bg_nav_custom_1">
+        <h5 class="modal-title" id="exampleModalLongTitle" style="color: white;"><i class="fa fa-filter"></i> Advance
+          Filter</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white;">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="card-counter-5 shadow">
+        <div class="card-body" style="background-color: rgba(255, 255, 255, 0.03);" *ngIf="advancefilterMode">
+
+          <form [formGroup]="myForm" (ngSubmit)="onSubmit()" #FormCheck="ngForm">
+            <div formArrayName="arr" *ngFor="let a of myForm.get('arr').controls; let i = index">
+              <div [formGroupName]="i" style="margin-bottom: 10px;">
+                <div id="test" class="form-row">
+                  <div class="form-group col-3">
+                    <select  #mySelect name="selectFields"  (change)='onOptionsSelected(mySelect.value, i)'
+                      formControlName="selectFields" class="form-control" placeholder="select">
+                      <option value="" selected disabled>Select Fields</option>
+                      <option value="id">Static Page ID</option>
+                      <option value="static_page_name">static Page Name</option>
+                      <option value="page_title">Page title</option>
+                      <option value="content">Content</option>
+                      <option value="action">Action</option>
+                      <option value="created_at">Created at</option>
+                      <option value="created_by">Created by</option>
+                      <option value="status">Status</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-3">
+
+                    <select name="selectCondition" formControlName="selectCondition" class="form-control"
+                      placeholder="select">
+                      <option value="" selected disabled>Select Condition</option>
+                      <option value="=">Equal to</option>
+                      <option value="!=">Not Equal to</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-3" id="some">
+                    <input formControlName="enterValue" type="text" id="numberinput{{i}}" autofocus autocomplete="off"
+                       class="form-control" placeholder="Enter Value" name="enterValue">
+
+                       <select formControlName="enterValue" class="form-control" id="ddlstatus{{i}}"
+                       placeholder="select" style="display: none;" >
+                       <option selected disabled value="">Select</option>
+                       <option value="true">Active </option>
+                       <option value="false">Inactive </option>
+                     </select>
+                     <select formControlName="enterValue" class="form-control" id="ddlcreatedBy{{i}}"
+                     placeholder="select" style="display: none;" >
+                     <option selected disabled value="">Select</option>
+                     <option value="1">SuperAdmin </option>
+                     <option value="2">Buyer </option>
+                     <option value="3">Seller </option>
+
+                   </select>
+                  </div>
+                   <div class="form-group col-3">
+                    <button style="margin-right: 5px;width: 50px;" class="btn_bg btn btn-sm" (click)="closeItem(i)"><i
+                        class="fas fa-minus"></i></button>
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class=" row justify-content-center" style="color: red; padding-bottom: 15px;"
+              *ngIf="FormCheck.form.invalid && FormCheck.form.touched  ">
+              Please enter Input ID/values
+            </div>
+            <div class="row d-flex justify-content-center">
+              <button style="margin-right: 5px;" class="btn_bg btn btn-sm"
+                (click)="addItem()" [disabled]="FormCheck.form.invalid "><i class="fas fa-plus"></i></button>
+              <button class="btn_bg btn btn-sm mr-1"  type="submit"
+                (click)="AdvancesFilterData()" [disabled]="FormCheck.form.invalid " > Search </button>
+              <button class="btn_bg btn btn-sm" (click)="ResetAdvanceFilter()"> Reset Filter </button>
+            </div>
+          </form>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text_color_black" id="exampleModalLongTitle">Delete</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Do you really want to delete this CategoryRequestStatus ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn_bg btn-sm" (click)="cancel()">No</button>
+        <button type="button" class="btn btn_bg btn-sm" (click)="deleteCategoryRequestStatus()">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>

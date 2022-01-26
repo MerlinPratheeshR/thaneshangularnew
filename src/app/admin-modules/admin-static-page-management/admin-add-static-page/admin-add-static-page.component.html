@@ -1,0 +1,75 @@
+<div class="container-fluid">
+    <h4 class="text_color_black" *ngIf="addmode"><b>Add Static Page     </b></h4>
+    <h4 class="text_color_black" *ngIf="editmode"><b>Update Static Page
+    </b></h4>
+    <div class="card card_border_radius card_top_shadow">
+        <div style="padding: 20px;">
+           
+            <form [formGroup]="addCountryForm">
+                <div class="row">
+                    <div class="col-12">
+
+                        <div class="form-group row d-flex justify-content-center">
+                            <label for="" class="col-sm-2 col-form-label">Page Title</label>
+                            <div class="col-sm-4">
+                                <input type="text" formControlName="country_code" placeholder="Enter the title of the Static page" class="form-control">
+                                <span class="text-danger"
+                             *ngIf="(addCountryForm.controls.country_code.touched) && addCountryForm.controls.country_code.errors?.required">
+                             Page Title is required
+                             </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row d-flex justify-content-center">
+                            <label for="" class="col-sm-2 col-form-label">Message/ Content
+                            </label>
+                            <div class="col-sm-4">
+                                <input type="text" formControlName="country_code" placeholder="Enter the Content of the Static page" class="form-control">
+                                <span class="text-danger"
+                             *ngIf="(addCountryForm.controls.country_code.touched) && addCountryForm.controls.country_code.errors?.required">
+                             Message/ Content is required
+                             </span>
+                            </div>
+                        </div>
+                        <div class="form-group row d-flex justify-content-center">
+                            <label for="" class="col-sm-2 col-form-label">Keywords
+                            </label>
+                            <div class="col-sm-4">
+                                <input type="text" formControlName="country_code" placeholder="Enter the Keywords of the Static page" class="form-control">
+                                <span class="text-danger"
+                             *ngIf="(addCountryForm.controls.country_code.touched) && addCountryForm.controls.country_code.errors?.required">
+                             Keywords is required
+                             </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row d-flex justify-content-center">
+                            <label for=""  class="col-sm-2 col-form-label">Page Type
+                            </label>
+                            <div class="col-sm-4">
+                                <select formControlName="status" class="form-control">
+                                    <option value="true"> Select Page Type</option>
+                                    <option value="false">Inactive</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row d-flex justify-content-center">
+                            <label for=""  class="col-sm-2 col-form-label">Status                            </label>
+                            <div class="col-sm-4">
+                                <select formControlName="status" class="form-control">
+                                    <option value="true">Select Status</option>
+                                    <option value="false">Inactive</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="d-flex justify-content-center">
+                <button type="button" class="btn btn_bg btn-sm mr-1" (click)="addCountry()" *ngIf="addmode">Save</button>
+                <button type="button" class="btn btn_bg btn-sm mr-1" (click)="updateCountry()" *ngIf="editmode">Update</button>
+                <button type="button" class="btn btn_bg btn-sm mr-1" (click)="cancel()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

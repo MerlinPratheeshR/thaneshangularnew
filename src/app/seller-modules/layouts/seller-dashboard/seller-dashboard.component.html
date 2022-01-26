@@ -1,0 +1,204 @@
+<div class="container-fluid">
+
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutAlign="center">
+      <div fxFlex="25%">
+        <div class="card-counter">
+          <h4 class="count-name">Product Count</h4>
+          <h3 class="count-numbers">12</h3>
+        </div>
+      </div>
+      <div fxFlex="25%">
+        <div class="card-counter">
+          <h4 class="count-name">Pending Orders</h4>
+          <h3 class="count-numbers">599</h3>
+        </div>
+      </div>
+      <div fxFlex="25%">
+        <div class="card-counter">
+          <h4 class="count-name">Completed Orders</h4>
+          <h3 class="count-numbers">6875</h3>
+        </div>
+      </div>
+      <div fxFlex="25%">
+        <div class="card-counter">
+          <h4 class="count-name">Cancelled Orders</h4>
+          <h3 class="count-numbers">35</h3>
+        </div>
+      </div>
+    </div>
+    <br />
+  
+    <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutWrap fxLayoutAlign="space-between strech"
+      style="padding: 10px;">
+  
+      <div fxFlex="100%">
+        <h3 class="b-h1">Product Details Report</h3>
+        <div class="card-counter-6 bar">
+          <div style="display: block;">
+            <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+              [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType">
+            </canvas>
+          </div>
+        </div>
+  
+      </div>
+      <div fxFlex="48%">
+        <h3 class="b-h1">Product Type</h3>
+        <div class="card-counter-6">
+          <div style="display: block;">
+            <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType">
+            </canvas>
+          </div>
+        </div>
+  
+      </div>
+      <div fxFlex="48%">
+        <h3 class="b-h1">Status</h3>
+        <div class="card-counter-6">
+          <div style="display: block;">
+            <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType">
+            </canvas>
+          </div>
+        </div>
+  
+      </div>
+  
+      <div fxFlex="48%">
+        <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutWrap fxLayoutAlign="space-between center"
+          style="padding: 10px;">
+  
+          <div fxFlex="100%">
+            <h3 class="b-h1">Pending Payment</h3>
+            <div class="card-counter-6 pay">
+              <p>Rakul</p>
+              <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutWrap fxLayoutAlign="space-between center">
+                <div fxFlex="80%">
+                </div>
+                <div fxFlex="19%">
+                  <p>10,000</p>
+                </div>
+              </div>
+              <p>Kumar</p>
+              <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutWrap fxLayoutAlign="space-between center">
+                <div fxFlex="80%">
+                </div>
+                <div fxFlex="19%">
+                  <p>10,000</p>
+                </div>
+              </div>
+              <p>Selva</p>
+              <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutWrap fxLayoutAlign="space-between center">
+                <div fxFlex="80%">
+                </div>
+                <div fxFlex="19%">
+                  <p>10,000</p>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <div fxFlex="100%">
+            <h3 class="b-h1">Today Orders</h3>
+            <div class="card-counter-5">
+  
+              <table datatable style="width: 100%;">
+                <tr>
+                  <th>Date</th>
+                  <th>Orders</th>
+                </tr>
+                <tr>
+                  <td>15-6-21</td>
+                  <td>30</td>
+                </tr>
+                <tr>
+                  <td>14-6-21</td>
+                  <td>30</td>
+                </tr>
+                <tr>
+                  <td>13-6-21</td>
+                  <td>30</td>
+                </tr>
+                <tr>
+                  <td>12-6-21</td>
+                  <td>30</td>
+                </tr>
+      
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div fxFlex="48%">
+        <h3 class="b-h">Team Details:</h3>
+  
+  
+        <div class="card-counter-1">
+          <div class="h-1">
+  
+            <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutAlign="center">
+              <div fxFlex="70%">
+                <h4 class="count-name">Team Members: 12</h4>
+              </div>
+              <div fxFlex="30%">
+                <select style="width: 75px; float: right;">
+                  <option value="undraw_profile_1">Sort by</option>
+                  <option value="option2">Option 2 (disabled)</option>
+                  <option value="option3">Option 3</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="l-1">
+            <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutAlign="center" class="box-01">
+              <div fxFlex="60px">
+                <img class="pro-i" src="assets/Logo_mini.png" alt="Logo">
+  
+              </div>
+              <div fxFlex>
+                <h5 class="u-t">User Name</h5>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+              </div>
+            </div>
+            <hr />
+            <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutAlign="center" class="box-01">
+              <div fxFlex="60px">
+                <img class="pro-i" src="assets/Logo_mini.png" alt="Logo">
+  
+              </div>
+              <div fxFlex>
+                <h5 class="u-t">User Name</h5>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+              </div>
+            </div>
+            <hr />
+            <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutAlign="center" class="box-01">
+              <div fxFlex="60px">
+                <img class="pro-i" src="assets/Logo_mini.png" alt="Logo">
+  
+              </div>
+              <div fxFlex>
+                <h5 class="u-t">User Name</h5>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+              </div>
+            </div>
+            <hr />
+  
+            <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutAlign="center" class="box-01">
+              <div fxFlex="60px">
+                <img class="pro-i" src="assets/Logo_mini.png" alt="Logo">
+  
+              </div>
+              <div fxFlex>
+                <h5 class="u-t">User Name</h5>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+              </div>
+            </div>
+            <hr />
+  
+          </div>
+  
+        </div>
+        <br />
+      </div>
+    </div>
+  </div>

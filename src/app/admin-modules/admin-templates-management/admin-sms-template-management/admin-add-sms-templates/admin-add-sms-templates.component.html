@@ -1,0 +1,55 @@
+<div class="container-fluid">
+    <div class="card card_border_radius card_top_shadow">
+        <div style="padding: 20px;">
+            <h4 class="text_color_main" *ngIf="addmode"><b>Add New SMS</b></h4>
+            <h4 class="text_color_main" *ngIf="editmode"><b>Update SMS</b></h4>
+            <form [formGroup]="addSMSForm">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group row d-flex justify-content-center">
+                            <label for="" class="col-sm-2 col-form-label">SMS Title</label>
+                            <div class="col-sm-4">
+                                <input type="text" formControlName="title_name" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row d-flex justify-content-center">
+                            <label for="" class="col-sm-2 col-form-label">SMS Content</label>
+                            <div class="col-sm-4">
+                                <textarea formControlName="sms_content" class="form-control" cols="30" rows="5"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row d-flex justify-content-center">
+                            <label for=""  class="col-sm-2 col-form-label">Module List</label>
+                            <div class="col-sm-4">
+                                <select formControlName="module_id" class="form-control">
+                                    <option value="1">Registration Management Module</option>
+                                    <option value="2">Order Management Module</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row d-flex justify-content-center">
+                            <label for="" class="col-sm-2 col-form-label">Action</label>
+                            <div class="col-sm-4">
+                                <input type="text" formControlName="action" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row d-flex justify-content-center">
+                            <label for=""  class="col-sm-2 col-form-label">Status</label>
+                            <div class="col-sm-4">
+                                <select formControlName="status" class="form-control">
+                                    <option value="true">Active</option>
+                                    <option value="false">Inactive</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="d-flex justify-content-center">
+                <button type="button" class="btn btn_bg btn-sm mr-1" (click)="addSMS()" *ngIf="addmode">Save</button>
+                <button type="button" class="btn btn_bg btn-sm mr-1" (click)="updateSMS()" *ngIf="editmode">Update</button>
+                <button type="button" class="btn btn_bg btn-sm mr-1" (click)="cancel()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

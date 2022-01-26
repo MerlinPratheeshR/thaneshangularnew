@@ -1,0 +1,68 @@
+<div class="container-fluid">
+    <h4 class="text_color_main" *ngIf="addmode"><b>Add New Email Template</b></h4>
+    <h4 class="text_color_main" *ngIf="editmode"><b>Update Email Template</b></h4>
+    <div class="card card_border_radius card_top_shadow">
+        <div style="padding: 20px;">
+            
+            <form [formGroup]="addEmailForm">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group row d-flex justify-content-center">
+                            <label for="" class="col-sm-2 col-form-label">Title</label>
+                            <div class="col-sm-6">
+                                <input type="text" formControlName="title" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row d-flex justify-content-center">
+                            <label for="" class="col-sm-2 col-form-label">Description</label>
+                            <div class="col-sm-6">
+                                <input type="text" formControlName="description" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row d-flex justify-content-center">
+                            <label for="" class="col-sm-2 col-form-label">Email Subject</label>
+                            <div class="col-sm-6">
+                                <input type="text" formControlName="subject" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row d-flex justify-content-center">
+                            <label for="" class="col-sm-2 col-form-label">Email Content</label>
+                            <div class="col-sm-6">
+                                <angular-editor formControlName="email_content" [config]="editorConfig"></angular-editor>
+                            </div>
+                        </div>
+                        <div class="form-group row d-flex justify-content-center">
+                            <label for=""  class="col-sm-2 col-form-label">Email Type</label>
+                            <div class="col-sm-6">
+                                <select formControlName="module_id" class="form-control">
+                                    <option value="1">Type 1</option>
+                                    <option value="2">Type 2</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row d-flex justify-content-center">
+                            <label for="" class="col-sm-2 col-form-label">Attachment</label>
+                            <div class="col-sm-6">
+                                <input type="file" formControlName="action" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row d-flex justify-content-center">
+                            <label for=""  class="col-sm-2 col-form-label">Status</label>
+                            <div class="col-sm-6">
+                                <select formControlName="status" class="form-control">
+                                    <option value="true">Active</option>
+                                    <option value="false">Inactive</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="d-flex justify-content-center">
+                <button type="button" class="btn btn_bg btn-sm mr-1" (click)="addEmail()" *ngIf="addmode">Save</button>
+                <button type="button" class="btn btn_bg btn-sm mr-1" (click)="updateEmail()" *ngIf="editmode">Update</button>
+                <button type="button" class="btn btn_bg btn-sm mr-1" (click)="cancel()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

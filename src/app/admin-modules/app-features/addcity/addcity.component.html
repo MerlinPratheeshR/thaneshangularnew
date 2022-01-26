@@ -1,0 +1,175 @@
+
+<div class="container-fluid">
+    <!-- <div class="row d-flex justify-content-start">
+        <div class="col-12">
+            <h3>City Management</h3>
+        </div>
+    </div> -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item active" aria-current="page" *ngIf="listmode">LIST</li>
+          <li class="breadcrumb-item active" aria-current="page" *ngIf="addmode">ADD</li>
+          <li class="breadcrumb-item active" aria-current="page" *ngIf="editmode">EDIT</li>
+          <li class="breadcrumb-item active" aria-current="page" *ngIf="deletemode">DELETE</li>
+        </ol>
+    </nav>
+</div>
+<div class="container-fluid">
+    <div class="row d-flex justify-content-end">
+        <button class="btn btn-sm btn_bg mr-3 mb-1" *ngIf="addmode" style="font-size: 12px;"  data-toggle="modal" data-target=".addCity"> <i class="fas fa-plus"></i> Add</button>
+    </div>
+
+    <div class="card shadow mb-4 card_border_radius">
+        <div class="card-header py-3 card_header_table">
+            <h6 class="m-0 font-weight-bold text-white">City List</h6>
+        </div>
+        <div class="card-body" *ngIf="!dataLoaded" style="align-items: center;">
+            <div class="sk-chase">
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+            </div>
+            <p>Loading City List</p>
+        </div>
+        <div class="card-body" *ngIf="dataLoaded">
+            <div class="table-responsive">
+                <table datatable class="table table-bordered table-sm" datatable width="120%" cellspacing="0" [dtOptions]="dtOptions" >
+                    <thead style="font-size: 14px;" class="table_header" >
+                        <tr>
+                            <th>S.No</th>
+                            <th>Name</th>
+                            <th>State Name</th>
+                            <th>City Name</th>
+                         
+                           
+                            <th>Created At</th>
+                            <th>Created By</th>
+                            <th>Updated At</th>
+                            <th>Updated By</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody style="font-size: 14px;">
+                        <tr *ngFor="let item of CityList; let i = index;">
+                            <td>{{i+1}}</td>
+                            <td><ng-container *ngFor="let coun of countryList;">
+                              <p *ngIf="coun.id == item.country_id">{{coun.country_name}}</p>
+                            </ng-container></td>
+                            <td><ng-container *ngFor="let state of stateList;">
+                              <p *ngIf="state.id == item.state_id">{{state.state_name}}</p>
+                            </ng-container></td>
+
+                            <td>{{item.city_name}}</td>
+                          
+                            <td>{{item.created_at | date}}</td>
+                           <td *ngIf="item.created_by == 1">Admin</td>
+                            <td>{{item.modified_at | date}}</td>
+                           <td *ngIf="item.modified_by == 1">Admin</td>
+                            <td>
+                                <button class="btn btn-sm mr-1" (click)="editCity(item)"> <i class="far fa-edit"></i> </button>
+                                <button class="btn btn-sm mr-1" (click)="validate(item.id)"> <i class="fas fa-trash-alt"></i> </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade addCity" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">ADD NEW CITY</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="container">
+                <form [formGroup]="addCityForm">
+                    <div class="form-row">
+                        <!-- <div class="form-group col-lg-3 col-md-4 col-sm-12">
+                          <label for="">ID</label>
+                          <input type="text" formControlName="id" class="form-control-sm" disabled>
+                        </div> -->
+
+                        <div class="form-group col-lg-3 col-md-4 col-sm-12">
+                          <label for="">Country Name</label>
+                          <select formControlName="country_id" [(ngModel)]="country_name" class="form-control" (change)="selectOption($event.target.value)">
+                            <option value="" disabled>Select</option> 
+                            <option *ngFor="let item of countryList" [value]="item.id">{{item.country_name}}</option>
+                          </select>
+                        </div>
+
+                        <div class="form-group col-lg-3 col-md-4 col-sm-12">
+                          <label>State Name</label>
+                          <select formControlName="state_id" class="form-control" [(ngModel)]="state_name">
+                            <option value="" disabled>Select</option>
+                              <option *ngFor="let item of stateList_dup" [value]="item.id">{{item.state_name}}</option>
+                          </select>
+                      </div>
+
+
+                        <div class="form-group col-lg-3 col-md-4 col-sm-12">
+                          <label for="">City Name</label>
+                          <input type="text" formControlName="city_name" class="form-control">
+                        </div>
+
+                      
+                      
+                        <!-- <div class="form-group col-lg-3 col-md-4 col-sm-12">
+                          <label for="">Created At</label>
+                          <input type="text" formControlName="created_at" class="form-control-sm">
+                        </div>
+                        <div class="form-group col-lg-3 col-md-4 col-sm-12">
+                          <label for="">Created By</label>
+                          <input type="text" formControlName="created_by" class="form-control-sm">
+                        </div>
+                        <div class="form-group col-lg-3 col-md-4 col-sm-12">
+                          <label for="">Modified By</label>
+                          <input type="text" formControlName="modified_at" class="form-control-sm">
+                        </div>
+                        <div class="form-group col-lg-3 col-md-4 col-sm-12">
+                          <label for="">Modified At</label>
+                          <input type="text" formControlName="modified_by" class="form-control-sm">
+                        </div> -->
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn_bg btn-sm" (click)="addCity()" *ngIf="addmode">ADD</button>
+            <button type="button" class="btn btn_bg btn-sm" (click)="updateCity()" *ngIf="editmode">UPDATE</button>
+            <button type="button" class="btn btn-danger btn-sm" (click)="cancel()">Cancel</button>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Delete</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Do you really want to delete this City ?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger btn-sm" (click)="cancel()">No</button>
+          <button type="button" class="btn btn-success btn-sm" (click)="deleteCity()">Yes</button>
+        </div>
+      </div>
+    </div>
+</div>

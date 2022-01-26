@@ -1,0 +1,55 @@
+<div class="container-fluid">
+    <h4 class="text_color_black" *ngIf="addmode"><b>Add New Usefull Links</b></h4>
+    <h4 class="text_color_black" *ngIf="editmode"><b>Update Usefull Links</b></h4>
+    <h4 class="text_color_black" *ngIf="viewmode"><b>Usefull Details</b></h4>
+    <div class="card card_border_radius" style="padding: 10px;">
+
+        <form [formGroup]="addUsefullLinksForm">
+              <div class="form-group row d-flex justify-content-center">
+                <label for=""  class="col-sm-2 col-form-label">Label</label>
+                <div class="col-sm-6">
+                    <input type="text" formControlName="label" class="form-control">
+                    
+
+                    <span class="text-danger"
+                    *ngIf="(addUsefullLinksForm.controls.label.touched) && addUsefullLinksForm.controls.label.errors?.required">
+                    Label is required
+                    </span>
+
+                    <mat-error class="text-danger" *ngIf="addUsefullLinksForm.controls.label.errors?.pattern">
+                        Should not use special char
+                       </mat-error>
+
+
+                </div>
+              </div>
+
+              <div class="form-group row d-flex justify-content-center">
+                <label for=""  class="col-sm-2 col-form-label">Link</label>
+                <div class="col-sm-6">
+                    <input type="text" formControlName="link" class="form-control">
+                    <span class="text-danger"
+                    *ngIf="(addUsefullLinksForm.controls.link.touched) && addUsefullLinksForm.controls.link.errors?.required">
+                    Link is required
+                    </span>
+                </div>
+              </div>
+
+              <div class="form-group row d-flex justify-content-center">
+                <label for=""  class="col-sm-2 col-form-label">Status</label>
+                <div class="col-sm-6">
+                    <select formControlName="status" class="form-control">
+                        <option value="true">Active</option>
+                        <option value="false">Inactive</option>
+                    </select>
+                </div>
+              </div>
+        </form>
+        
+        <div class="d-flex justify-content-center">
+            <button type="button" class="btn btn_bg btn-sm mr-1" (click)="addUsefullLinks()" *ngIf="addmode">Save</button>
+            <button type="button" class="btn btn_bg btn-sm mr-1" (click)="updateUsefullLinks()" *ngIf="editmode">Update</button>
+            <button type="button" class="btn btn_bg btn-sm mr-1" (click)="cancel()">Cancel</button>
+        </div>
+    </div>
+</div>

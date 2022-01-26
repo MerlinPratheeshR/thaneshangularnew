@@ -1,0 +1,352 @@
+<div class="container-fluid">
+    <h4 class="text_color_black" *ngIf="addmode"><b>Add New Intermediator</b></h4>
+    <h4 class="text_color_black" *ngIf="editmode"><b>Update Intermediator</b></h4>
+    <h4 class="text_color_black" *ngIf="viewmode"><b>view Intermediator</b></h4>
+    <div class="card card_border_radius" style="padding: 10px;">
+        <form [formGroup]="BuyersForm">
+
+            <div class="row" style="padding: 15px;">
+                <div class="col-12 col-sm-6">
+
+
+                    <div class="form-group row d-flex justify-content-center">
+                        <label for="" class="col-sm-6 col-form-label">First Name</label>
+                        <div class="col-sm-6">
+                            <input type="text" formControlName="firstname" class="form-control"
+                                placeholder="Enter first Name" />
+
+                            <span class="text-danger" *ngIf="(BuyersForm.controls.firstname.invalid && submitted)">
+                                First Name is required
+                            </span>
+                            <span class="text-danger"
+                                *ngIf="(BuyersForm.controls.firstname.touched) && BuyersForm.controls.firstname.errors?.required ">
+                                First Name is required
+                            </span>
+                            <mat-error class="text-danger" *ngIf="BuyersForm.controls.firstname.errors?.pattern">
+                                Should not use special char
+                            </mat-error>
+                        </div>
+                    </div>
+
+                    <div class="form-group row d-flex justify-content-center">
+                        <label for="" class="col-sm-6 col-form-label">Last Name</label>
+                        <div class="col-sm-6">
+                            <input type="text" formControlName="lastname" class="form-control"
+                                placeholder="Enter first Name">
+                            <span class="text-danger" *ngIf="(BuyersForm.controls.lastname.invalid && submitted)">
+                                Last Name is required
+                            </span>
+                            <span class="text-danger"
+                                *ngIf="(BuyersForm.controls.lastname.touched) && BuyersForm.controls.lastname.errors?.required ">
+                                Last Name is required
+                            </span>
+                            <mat-error class="text-danger" *ngIf="BuyersForm.controls.lastname.errors?.pattern">
+                                Should not use special char
+                            </mat-error>
+                        </div>
+                    </div>
+
+                    <div class="form-group row d-flex justify-content-center">
+                        <label for="" class="col-sm-6 col-form-label">Email Id</label>
+                        <div class="col-sm-6">
+                            <input type="text" id="emailId" (focusout)="onFocusOut(BuyersForm.controls.email_id.value)"
+                                placeholder="Enter Email-Id" formControlName="email_id" class="form-control">
+                            <span class="text-danger" *ngIf="(BuyersForm.controls.email_id.invalid && submitted)">
+                                Email Id is required
+                            </span>
+                            <span class="text-danger"
+                                *ngIf="(BuyersForm.controls.email_id.touched) && BuyersForm.controls.email_id.errors?.required">
+                                Email Id is required
+                            </span>
+                            <span class="text-danger"
+                                *ngIf="(this.EmailIdStatus?.mailcount == 1 && !BuyersForm.controls.email_id.errors?.pattern)">
+                                EmailId Already Available
+                            </span>
+                            <mat-error class="text-danger" *ngIf="BuyersForm.controls.email_id.errors?.pattern">
+                                Enter valid Email-Id
+                            </mat-error>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row d-flex justify-content-center">
+                        <label for="" class="col-sm-6 col-form-label">User Name</label>
+                        <div class="col-sm-6">
+                            <input type="text" formControlName="user_name" class="form-control"
+                                placeholder="Enter User Name">
+
+                            <span class="text-danger" *ngIf="(BuyersForm.controls.user_name.invalid && submitted)">
+                                User Name is required
+                            </span>
+                            <span class="text-danger"
+                                *ngIf="(BuyersForm.controls.user_name.touched) && BuyersForm.controls.user_name.errors?.required ">
+                                User Name is required
+                            </span>
+                            <mat-error class="text-danger" *ngIf="BuyersForm.controls.user_name.errors?.pattern">
+                                Should not use special char
+                            </mat-error>
+                        </div>
+                    </div>
+
+                    <div class="form-group row d-flex justify-content-center">
+                        <label for="" class="col-sm-6 col-form-label">Password</label>
+                        <div class="col-sm-6">
+                            <input type="password" formControlName="password" class="form-control"
+                                placeholder="Enter the password"
+                                [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                <div *ngIf="f.password.errors.required">Password is required</div>
+                                <div *ngIf="f.password.errors.minlength">
+                                    Password must be at least 6 characters
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row d-flex justify-content-center">
+                        <label for="" class="col-sm-6 col-form-label">Re-Enter Password</label>
+                        <div class="col-sm-6">
+                            <input type="password" formControlName="re_enterpassword" class="form-control"
+                                placeholder="Enter the password" [ngClass]="{
+                              'is-invalid': submitted && f.re_enterpassword.errors
+                            }" />
+                            <div *ngIf="submitted && f.re_enterpassword.errors" class="invalid-feedback">
+                                <div *ngIf="f.re_enterpassword.errors.required">
+                                    Confirm Password is required
+                                </div>
+                                <div *ngIf="f.re_enterpassword.errors.mustMatch">
+                                    Password and confirm not match
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row d-flex justify-content-center">
+
+                        <label for="" class="col-sm-6 col-form-label">Role</label>
+                        <div class="col-sm-6">
+                            <select #mySelect formControlName="role" 
+                                class="form-control">
+                                <option hidden value="">select</option>
+                                <option *ngFor="let item of RoleList" [value]="item.id">
+                                    {{item.role_name}}</option>
+                            </select>
+
+                            <span class="text-danger" *ngIf="(BuyersForm.controls.role.invalid && submitted)">
+                                Role is required
+                            </span>
+                            <span class="text-danger"
+                                *ngIf="(BuyersForm.controls.role.touched) && BuyersForm.controls.role.errors?.required ">
+                                Please select Role
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row d-flex justify-content-center">
+                        <label for="" class="col-sm-6 col-form-label">Phone Number</label>
+                        <div class="col-sm-6">
+                            <input type="number" formControlName="phone_number" placeholder="Enter the PhoneNumber"
+                                (focusout)="onFocusOutPhnNo(BuyersForm.controls.phone_number.value)"
+                                class="form-control">
+
+                            <span class="text-danger" *ngIf="(BuyersForm.controls.phone_number.invalid && submitted)">
+                                Phone Number is required
+                            </span>
+                            <span class="text-danger"
+                                *ngIf="(BuyersForm.controls.phone_number.touched) && BuyersForm.controls.phone_number.errors?.required">
+                                Phone Number is required
+                            </span>
+                            <span class="text-danger"
+                                *ngIf="(this.EmailIdStatus?.mailcount == 1 && !BuyersForm.controls.phone_number.errors?.pattern)">
+                                Phone Number Already Available
+                            </span>
+                            <mat-error class="text-danger" *ngIf="BuyersForm.controls.phone_number.errors?.pattern">
+                                Enter valid Phone Number
+                            </mat-error>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group row d-flex justify-content-center">
+                        <label for="" class="col-sm-6 col-form-label">Mobile Number</label>
+                        <div class="col-sm-6">
+                            <input type="number" formControlName="mobile_number" placeholder="Enter the MobileNumber"
+                                (focusout)="onFocusOutMblNo(BuyersForm.controls.mobile_number.value)"
+                                class="form-control">
+
+                            <span class="text-danger" *ngIf="(BuyersForm.controls.mobile_number.invalid && submitted)">
+                                Mobile Number is required
+                            </span>
+                            <span class="text-danger"
+                                *ngIf="(BuyersForm.controls.mobile_number.touched) && BuyersForm.controls.mobile_number.errors?.required">
+                                Mobile Number is required
+                            </span>
+                            <span class="text-danger"
+                                *ngIf="(this.EmailIdStatus?.mailcount == 1 && !BuyersForm.controls.mobile_number.errors?.pattern)">
+                                Mobile Number Already Available
+                            </span>
+                            <mat-error class="text-danger" *ngIf="BuyersForm.controls.mobile_number.errors?.pattern">
+                                Enter valid Mobile Number
+                            </mat-error>
+
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row d-flex justify-content-center">
+                        <label for="" class="col-sm-6 col-form-label">Status</label>
+                        <div class="col-sm-6">
+                            <select class="form-control" formControlName="status" >
+                                <option hidden value="">select</option>
+                                <option value="true">Active</option>
+                                <option value="false">InActive</option>
+
+                            </select>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="form-group row d-flex justify-content-center">
+                        <label for="" class="col-sm-6 col-form-label">Image</label>
+                        <div class="col-sm-6 ">
+                            <label *ngIf="!viewmode">
+                                <img src="../../../../assets/Form Field.png" alt="" class="img-fluid">
+                                <input type="file" name="" id="file"
+                                    (change)="companyLogoUpload($event)" style="display: none;">
+                            </label>
+
+                            <div *ngIf="!image" class="mt-1">
+                                <p class="text_color_main">Please Upload an image @ 1980 * 1080</p>
+                            </div>
+
+                            <div *ngIf="image" class="mt-1">
+                                <img src="{{image}}" alt="" class="img-fluid"
+                                    style="width: auto; height:50px;">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="form-group row d-flex justify-content-center">
+
+                        <label for="" class="col-sm-6 col-form-label">Select the country</label>
+                        <div class="col-sm-6">
+                            <select #mySelect formControlName="country" 
+                                class="form-control">
+                                <option hidden value="">select</option>
+                                <option *ngFor="let item of countryList" [value]="item.id">
+                                    {{item.country_name}}</option>
+                            </select>
+
+                            <span class="text-danger" *ngIf="(BuyersForm.controls.country.invalid && submitted)">
+                                Country Name is required
+                            </span>
+                            <span class="text-danger"
+                                *ngIf="(BuyersForm.controls.country.touched) && BuyersForm.controls.country.errors?.required ">
+                                Please select country
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row d-flex justify-content-center">
+                        <label for="" class="col-sm-6 col-form-label">Language spoken</label>
+                        <div class="col-sm-6">
+                            <input type="text" formControlName="language" class="form-control"
+                                placeholder="Enter Language" />
+
+                            <span class="text-danger" *ngIf="(BuyersForm.controls.language.invalid && submitted)">
+                                language is required
+                            </span>
+                            <span class="text-danger"
+                                *ngIf="(BuyersForm.controls.language.touched) && BuyersForm.controls.language.errors?.required ">
+                                language is required
+                            </span>
+                            <mat-error class="text-danger" *ngIf="BuyersForm.controls.language.errors?.pattern">
+                                Should not use special char
+                            </mat-error>
+                        </div>
+                    </div>
+
+                    <div class="form-group row d-flex justify-content-center">
+                        <label for="" class="col-sm-6 col-form-label">Address</label>
+                        <div class="col-sm-6">
+                            <input type="text" formControlName="address" class="form-control"
+                                placeholder="Enter Address" />
+
+                            <span class="text-danger" *ngIf="(BuyersForm.controls.address.invalid && submitted)">
+                                Address is required
+                            </span>
+                            <span class="text-danger"
+                                *ngIf="(BuyersForm.controls.address.touched) && BuyersForm.controls.address.errors?.required ">
+                                Address is required
+                            </span>
+                            <mat-error class="text-danger" *ngIf="BuyersForm.controls.address.errors?.pattern">
+                                Should not use special char
+                            </mat-error>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="col-12 col-sm-6">
+
+                    <div class="form-group row d-flex justify-content-center">
+                        <label for="" class="col-sm-6 col-form-label">Created date & time</label>
+                        <div class="col-sm-6">
+                            <input readonly type="date" formControlName="created_at" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row d-flex justify-content-center">
+                        <label for="" class="col-sm-6 col-form-label">Modified date & time</label>
+                        <div class="col-sm-6">
+                            <input readonly type="date" formControlName="created_by" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row d-flex justify-content-center">
+                        <label for="" class="col-sm-6 col-form-label">Created by</label>
+                        <div class="col-sm-6">
+                            <input readonly type="text" formControlName="modified_at" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row d-flex justify-content-center">
+                        <label for="" class="col-sm-6 col-form-label">Modified by</label>
+                        <div class="col-sm-6">
+                            <input readonly type="text" formControlName="modified_by" class="form-control">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div class="d-flex justify-content-center">
+            <button type="button" class="btn btn_bg btn-sm mr-1" (click)="addBuyerDialog()"
+                *ngIf="addmode">Save</button>
+            <button type="button" class="btn btn_bg btn-sm mr-1" (click)="updateBuyer()"
+                *ngIf="editmode">Update</button>
+            <button type="button" class="btn btn_bg btn-sm mr-1" (click)="addClose()">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addBuyerModal" tabindex="-1" role="dialog" aria-labelledby="addBuyerModalTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text_color_black" id="exampleModalLongTitle">Add Buyer?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Do you really want to Add this Intermediator ?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn_bg btn-sm" (click)="cancel()">No</button>
+                <button type="button" class="btn btn_bg btn-sm" (click)="addIntermediator()">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>

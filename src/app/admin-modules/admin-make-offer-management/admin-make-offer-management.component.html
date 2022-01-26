@@ -1,0 +1,189 @@
+
+<div class="container-fluid">
+  <div class="row d-flex justify-content-between">
+    <h2 style="color: black;"> <b>Make Offer List</b> </h2>
+      <button type="button" class="btn btn_bg btn-sm mr-3" (click)="addMakeOffer()" style="font-size: 12px;"><i class="fas fa-plus"></i> New </button>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="accordion" id="accordionExample">
+        <div class="card-counter-5 shadow">
+          <div class="card-header bg_nav_custom_1" id="headingOne" style="height: 60px;" *ngIf="!filterMode">
+            
+            <div class="row" >
+              <div class="col-12 d-flex justify-content-between">
+                <div>
+                  <button style="color: white;" class="btn btn-sm mb-2" type="button">
+                    <i class="fa fa-arrow-circle-right" style="padding:0px 8px 0px 0px" aria-hidden="true"></i>
+                  </button>
+                </div>
+                <div>
+                  <button style="color: white;" class="btn btn-sm mb-2" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Filters <i class="fas fa-chevron-down"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-header bg_nav_custom_2" id="headingOne" style="height: 60px;" *ngIf="FilteredState">
+            <div class="row" >
+              <div class="col-12 d-flex justify-content-between">
+                <div class="mt-2">
+                  <span style="font-size: 12px;" class="filter-badge mr-1" *ngFor="let item of [1,2,3,4,5]">Field Name: Value <i class="ml-2 mr-1 fas fa-times"></i> </span>
+                </div>
+                <div>
+                  <button style="color: #056CB1;" class="btn btn-sm mb-2" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Reset Filters <i class="fas fa-chevron-down"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+      
+          <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body" style="background-color: rgba(255, 255, 255, 0.03);" >
+              <form [formGroup]="advanceFilterForm">
+                  <div class="form-row">
+                      <div class="form-group col-3">
+                        <select class="form-control" placeholder="select">
+                            <option  value="" selected disabled>Status</option>
+                            <option  value="1">Active</option>
+                            <option  value="2">In active</option>
+                        </select>
+                      </div>
+                      <div class="form-group col-3">
+                        <select class="form-control" placeholder="select">
+                            <option  value="" selected disabled>Created By</option>
+                            <option  value="1">User 1</option>
+                            <option  value="2">User 2</option>
+                        </select>
+                      </div>
+                      <div class="form-group col-3">
+                        <select class="form-control" placeholder="select">
+                            <option  value="" selected disabled>Updated By</option>
+                            <option  value="1">User 1</option>
+                            <option  value="2">User 2</option>
+                        </select>
+                      </div>
+  
+                      <div class="form-group col-3">
+                        <input type="date" class="form-control" placeholder="select">
+                      </div>
+                      <div class="form-group col-3">
+                        <input type="date" class="form-control" placeholder="select">
+                      </div>
+                  </div>
+                  <div class="row d-flex justify-content-center">
+                    <button class="btn_bg btn btn-sm mr-1" (click)="FilterData()" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> Search </button>
+                    <button class="btn_bg btn btn-sm" (click)="ClearFilter()"> Clear </button>
+                  </div>
+              </form>
+              <div class="d-flex justify-content-end">
+                  <a style="text-decoration: none;" class="text_color_main" (click)="getFilterState('advancefilterMode')"> <i class="fa fa-filter" ></i> Advance Filter</a>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+      </div>
+      <br>
+      <br>
+      <div class="card mb-4 card_border_radius card-main-shadow" *ngIf="dataLoaded" style="padding: 20px;">
+          <div class="card-counter-5 shadow" style="overflow-x: scroll;">
+              <table datatable style="width: 200%;" id="details_gdr">
+                  <thead style="font-size: 13px;" class="table_header">
+                      <tr>
+                          <th class="t-action">Action</th> 
+                          <th class="t-action">Subscription Plan Name</th>
+                          <th class="t-text-max">Description</th>
+                          <th class="t-action">Number Of Users</th>
+                          <th class="t-text-max">Modules List</th>
+                          <th class="t-action">Days</th>
+                          <th class="t-action">Effective Date</th>
+                          <th class="t-action">Price</th>
+                          <th class="t-text-min">Status</th>
+                          <th class="t-text-min">Created At</th>
+                          <th class="t-text-min">Updated At</th>
+                          <th class="t-text-min">Created By</th>
+                          <th class="t-text-min">Updated By</th>
+                      </tr>
+                  </thead>
+                  <tbody style="font-size: 14px;">
+                      <tr *ngFor="let item of MakeOfferList | paginate: { itemsPerPage: itemPage, currentPage: p }; let i = index;" style="justify-content: center; align-items:center; height:45px;">
+                        <td>
+                              <button class="btn btn-sm mr-1" (click)="editMakeOffer(item)"> <i class="far fa-edit"></i> </button>
+                              <button class="btn btn-sm mr-1" (click)="validate(item.id)"> <i class="fas fa-trash-alt"></i> </button>
+                          </td>
+                          <td >{{item.subscription_name}}</td>
+                          <td >Lorem Ipsum is simply dummy text of the printing and typesetting industry. </td>
+                          <td>15</td>
+                          <td > <span class="mr-1" style="background-color: #056CB1; border-radius:10px; padding:5px;">Module 1</span> <span class="mr-1" style="background-color: #056CB1; border-radius:10px; padding:5px;">Module 2</span> <span style="background-color: #056CB1; border-radius:10px; padding:5px;">Module 3</span> </td>
+                          <td>5</td>
+                          <td>19-09-2021</td>
+                          <td>1500</td>
+                          <td>
+                              <span>Active</span>
+                          </td>
+                          <td style="text-align: center;">19-09-2021</td>
+                          <td style="text-align: center;">19-09-2021</td>
+                          <td>ADMIN</td> 
+                          <td>ADMIN</td>
+                          
+                      </tr>
+                  </tbody>
+      
+              </table>
+              <div class="row mt-3" *ngIf="MakeOfferList.length === 0">
+                <div class="col-12 d-flex justify-content-center">
+                  <h4 style="color: black;"><b>No Data Available</b></h4>
+                </div>
+              </div>
+          </div>
+          <div class="d-flex justify-content-between" style="margin-top: 25px;">
+      
+              <form>
+                  <label for="Pages">Show &nbsp;</label>
+                  <select name="Pages" id="Pages" [(ngModel)]="itemPage" class="show-select">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                  </select>
+              </form>
+      
+              <div>
+                  <pagination-controls (pageChange)="pageChanged($event)" previousLabel="<"
+                  nextLabel=">" ></pagination-controls>
+              </div>
+      
+              
+          </div>
+      </div>
+
+    </div>
+  </div>
+  
+
+</div>
+
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Delete</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Do you really want to delete this Make Offer ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger btn-sm" (click)="cancel()">No</button>
+        <button type="button" class="btn btn-success btn-sm" (click)="deleteMakeOffer()">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>

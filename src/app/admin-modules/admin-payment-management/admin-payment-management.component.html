@@ -1,0 +1,188 @@
+
+<div class="container-fluid">
+    <div class="row d-flex justify-content-end">
+        <button type="button" class="btn btn_bg btn-sm mr-3 mb-1" (click)="addCountry()" style="font-size: 12px;"><i class="fas fa-plus"></i> ADD</button>
+    </div>
+    <h2 style="color: black;"> <b>Commission Management List</b> </h2>
+    <div class="accordion" id="accordionExample">
+        <div class="card-counter-5 shadow">
+          <div class="card-header bg_nav_custom_1" id="headingOne" style="height: 50px;">
+            <h2 class="mb-0">
+              <button style="color: white;" class="btn btn-sm mb-2" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <i class="fa fa-car"></i> Filters
+              </button>
+            </h2>
+          </div>
+      
+          <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body" style="background-color: rgba(255, 255, 255, 0.03);" *ngIf="filterMode">
+              <form [formGroup]="advanceFilterForm">
+                  <div class="form-row">
+                      <div class="form-group col-3">
+                        <select class="form-control" placeholder="select">
+                            <option  value="" selected disabled>Status</option>
+                            <option  value="1">Active</option>
+                            <option  value="2">In active</option>
+                        </select>
+                      </div>
+                      <div class="form-group col-3">
+                        <select class="form-control" placeholder="select">
+                            <option  value="" selected disabled>Created By</option>
+                            <option  value="1">User 1</option>
+                            <option  value="2">User 2</option>
+                        </select>
+                      </div>
+                      <div class="form-group col-3">
+                        <select class="form-control" placeholder="select">
+                            <option  value="" selected disabled>Updated By</option>
+                            <option  value="1">User 1</option>
+                            <option  value="2">User 2</option>
+                        </select>
+                      </div>
+
+                      <div class="form-group col-3">
+                        <input type="date" class="form-control" placeholder="select">
+                      </div>
+                      <div class="form-group col-3">
+                        <input type="date" class="form-control" placeholder="select">
+                      </div>
+                  </div>
+              </form>
+              <div class="d-flex justify-content-end">
+                  <a style="text-decoration: none;" class="text_color_main" (click)="getFilterState('advancefilterMode')"> <i class="fa fa-filter" ></i> Advance Filter</a>
+              </div>
+            </div>
+            <div class="card-body" style="background-color: rgba(255, 255, 255, 0.03);" *ngIf="advancefilterMode">
+                <form [formGroup]="advanceFilterForm">
+                    <div class="form-row">
+                        <div class="form-group col-3">
+                          <select class="form-control" placeholder="select">
+                              <option  value="" selected disabled>Fields</option>
+                              <option  value="1">Country Name</option>
+                              <option  value="2">Country Code</option>
+                          </select>
+                        </div>
+                        <div class="form-group col-3">
+                          <select class="form-control" placeholder="select">
+                              <option  value="" selected disabled>Condition</option>
+                              <option  value="1">Equal to</option>
+                              <option  value="2">Not Equal to</option>
+                          </select>
+                        </div>
+  
+                        <div class="form-group col-3">
+                          <input type="text" class="form-control" placeholder="Value">
+                        </div>
+                    </div>
+                </form>
+                <div class="d-flex justify-content-end">
+                    <a style="text-decoration: none;" class="text_color_main btn_link" (click)="getFilterState('filterMode')"> <i class="fa fa-filter"></i>  Normal Filter</a>
+                </div>
+              </div>
+          </div>
+        </div>
+ 
+    </div>
+    <br>
+    <div class="card mb-4 card_border_radius card-main-shadow" *ngIf="dataLoaded" style="padding: 20px;">
+        <div class="card-counter-5 shadow" >
+            <table datatable style="width: 100%; overflow-x: scroll;">
+                <thead style="font-size: 13px; height:50px;" class="table_header">
+                    <tr style="text-align: center;">
+                        <th style="padding: 10px;">S.No</th>
+                        <th>Subscription Plan Name</th>
+                        <th>Description</th>
+                        <th>Number Of Users</th>
+                        <th>Days</th>
+                        <th>Effective Date</th>
+                        <th>Status</th>
+                        <th>Created At</th>
+                        <th>Created By</th>
+                        <th>Updated At</th>
+                        <th>Updated By</th>
+                        <th>Action</th>        
+                    </tr>
+                </thead>
+                <tbody style="font-size: 14px;">
+                    <tr *ngFor="let item of countryList | paginate: { itemsPerPage: itemPage, currentPage: p }; let i = index;" style="justify-content: center; align-items:center; height:45px;">
+                        <td>{{i+1}}</td>
+                        <td>{{item.country_name}}</td>
+                        <td>{{item.country_name}}</td>
+                        <td>{{item.country_name}}</td>
+                        <td>{{item.country_name}}</td>
+                        <td>{{item.country_code}}</td>
+                        <td>
+                            <span *ngIf="item.status == true">Active</span>
+                            <span *ngIf="item.status == false">Inactive</span>
+                        </td>
+                        <td>{{item.created_at | date}}</td>
+                        <td>{{item.created_by}}</td>
+                        <td>{{item.modified_at | date}}</td>
+                        <td>{{item.modified_by}}</td>
+                        <td>
+                            <button class="btn btn-sm mr-1" (click)="editCountry(item)"> <i class="far fa-edit"></i> </button>
+                            <button class="btn btn-sm mr-1" (click)="validate(item.id)"> <i class="fas fa-trash-alt"></i> </button>
+                        </td>
+                    </tr>
+                </tbody>
+    
+            </table>
+        </div>
+        <div class="d-flex justify-content-between" style="margin-top: 25px;">
+    
+            <form>
+                <label for="Pages">Show &nbsp;</label>
+                <select name="Pages" id="Pages" [(ngModel)]="itemPage">
+                  <option value="10">10</option>
+                  <option value="25">25</option>
+                  <option value="50">50</option>
+                  <option value="100">100</option>
+                </select>
+            </form>
+    
+            <div>
+                <pagination-controls (pageChange)="pageChanged($event)" previousLabel="<"
+                nextLabel=">" ></pagination-controls>
+            </div>
+    
+            
+        </div>
+    </div>
+    <div class="card shadow mb-4 card_border_radius" *ngIf="!dataLoaded">
+        <!-- <div class="card-header py-3 card_header_table">
+            <h6 class="m-0 font-weight-bold text-white">Country List</h6>
+        </div> -->
+        <div class="card-body"  style="align-items: center;">
+            <div class="sk-chase">
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+            </div>
+            <p>Loading Country List</p>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Delete</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Do you really want to delete this Country ?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger btn-sm" (click)="cancel()">No</button>
+          <button type="button" class="btn btn-success btn-sm" (click)="deleteCountry()">Yes</button>
+        </div>
+      </div>
+    </div>
+</div>

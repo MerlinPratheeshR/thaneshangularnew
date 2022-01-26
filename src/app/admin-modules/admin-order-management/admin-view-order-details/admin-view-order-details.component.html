@@ -1,0 +1,127 @@
+<div class="container-fluid">
+    <div class="row d-flex justify-content-start">
+        <div>
+            <h4 class="text_color_main"><b>Order Details</b></h4>
+        </div>
+        
+    </div>
+    <div class="row d-flex justify-content-start">
+        <div>
+            <h6 class="text_color_main"><b>Order No: </b> <span class="text-dark">#ORDER-001</span> &nbsp; &nbsp; &nbsp; &nbsp; <b>Buyer Name: </b> <span class="text-dark">Buyer 1</span></h6>
+        </div>
+    </div>
+    <div class="card shadow mb-4 card_border_radius">
+        <div class="card-header py-3">
+            <div class="row">
+                <div class="col-6">
+                    <h6 class="m-0 font-weight-bold text-dark">Seller Name: Seller 1</h6>
+                    <h6 class="m-0 font-weight-bold text-success"><span class="text-dark">Shipment Status:</span> Shipped</h6>
+                </div>
+                <div class="col-6">
+                    <h6 class="m-0 font-weight-bold text-dark">Sub Order ID: #001</h6>
+                    <h6 class="m-0 font-weight-bold text-success"><span class="text-dark">Order Status:</span> Delivered</h6>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="card-body" *ngIf="!dataLoaded" style="align-items: center;">
+            <div class="sk-chase">
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+            </div>
+            <p>Loading Orders</p>
+        </div> -->
+        <div class="card-body">
+            <div class="table-responsive">
+                <table datatable class="table table-bordered table-sm" datatable width="100%" cellspacing="0" [dtOptions]="dtOptions" >
+                    <thead style="font-size: 14px;" class="table_header" >
+                        <tr>
+                            <th>S.No</th>
+                            <th>Product Name</th>
+                            <th>Quantity</th>
+                            <th>Amount</th>
+                            <th>Tax</th>
+                            <th>Total Amount</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody style="font-size: 14px;">
+                        <tr *ngFor="let item of [1,2,3,4,5]; let i = index;" style="justify-content: center; align-items:center;">
+                            <td>{{i+1}}</td>
+                            <td>Product {{i+1}}</td>
+                            <td>{{i+1}}</td>
+                            <td>1000{{i+1}}</td>
+                            <td>1000{{i+1+ 10}} </td>
+                            <td>1000{{i+1+ 10}} </td>
+                            <td>
+                                <button style="background-color: transparent;" class="btn btn-sm"><i class="fa fa-edit" style="color: black;"></i></button>
+                                <button style="background-color: transparent;" class="btn btn-sm"><i class="fa fa-eye" style="color: black;"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="card shadow mb-4 card_border_radius">
+        <div class="card-header py-3">
+            <div class="row">
+                <div class="col-6">
+                    <h6 class="m-0 font-weight-bold text-dark">Seller Name: Seller 2</h6>
+                    <h6 class="m-0 font-weight-bold text-success"><span class="text-dark">Shipment Status:</span> Shipped</h6>
+                </div>
+                <div class="col-6">
+                    <h6 class="m-0 font-weight-bold text-dark">Sub Order ID: #002</h6>
+                    <h6 class="m-0 font-weight-bold text-success"><span class="text-dark">Order Status:</span> Delivered</h6>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="card-body" *ngIf="!dataLoaded" style="align-items: center;">
+            <div class="sk-chase">
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+            </div>
+            <p>Loading Orders</p>
+        </div> -->
+        <div class="card-body">
+            <div class="table-responsive">
+                <table datatable class="table table-bordered table-sm" datatable width="100%" cellspacing="0" [dtOptions]="dtOptions" >
+                    <thead style="font-size: 14px;" class="table_header" >
+                        <tr>
+                            <th>S.No</th>
+                            <th>Product Name</th>
+                            <th>Quantity</th>
+                            <th>Amount</th>
+                            <th>Tax</th>
+                            <th>Total Amount</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody style="font-size: 14px;">
+                        <tr *ngFor="let item of [1,2,3,4,5]; let i = index;" style="justify-content: center; align-items:center;">
+                            <td>{{i+1}}</td>
+                            <td>Product {{i+1}}</td>
+                            <td>{{i+1}}</td>
+                            <td>1000{{i+1}}</td>
+                            <td>1000{{i+1+ 10}} </td>
+                            <td>1000{{i+1+ 10}} </td>
+                            <td>
+                                <button style="background-color: transparent;" class="btn btn-sm"><i class="fa fa-edit" style="color: black;"></i></button>
+                                <button style="background-color: transparent;" class="btn btn-sm"><i class="fa fa-eye" style="color: black;"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

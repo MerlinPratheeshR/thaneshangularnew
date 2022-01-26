@@ -1,0 +1,56 @@
+<div class="container-fluid">
+    <h4 class="text_color_black" *ngIf="addmode"><b>Add New Social Media Links</b></h4>
+    <h4 class="text_color_black" *ngIf="editmode"><b>Update Social Media Links</b></h4>
+    <h4 class="text_color_black" *ngIf="viewmode"><b>Social Media Links Details</b></h4> 
+    <div class="card card_border_radius" style="padding: 10px;">
+
+        <form [formGroup]="addMediaLinksForm">
+            <div class="form-group row d-flex justify-content-center">
+                <label for=""  class="col-sm-2 col-form-label">Link</label>
+                <div class="col-sm-6">
+                    <input type="text" formControlName="link" class="form-control">
+                    
+
+                    <span class="text-danger"
+                    *ngIf="(addMediaLinksForm.controls.link.touched) && addMediaLinksForm.controls.link.errors?.required">
+                    Link is required
+                    </span>
+
+                    <mat-error class="text-danger" *ngIf="addMediaLinksForm.controls.link.errors?.pattern">
+                        Should not use special char
+                       </mat-error>
+
+                </div>
+              </div>
+
+              <div class="form-group row d-flex justify-content-center">
+                <label for=""  class="col-sm-2 col-form-label">Status</label>
+                <div class="col-sm-6">
+                    <select formControlName="status" class="form-control">
+                        <option value="true">Active</option>
+                        <option value="false">Inactive</option>
+                    </select>
+                </div>
+              </div>
+
+              <div class="form-group row d-flex justify-content-center">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-6">
+                    <input *ngIf="!viewmode" type="file" name="" id="" (change)="UploadMediaLinks($event)">
+                </div>
+              </div>
+              <div *ngIf="!imageUploaded">
+                  <p class="text_color_main">Please Upload an image  @ 1980 * 1080</p>
+              </div>
+              <div *ngIf="imageUploaded">
+                  <img src="{{MediaLinksUrl}}" alt="" class="img-fluid" style="width: auto; height:75px;">
+              </div>
+        </form>
+        
+        <div class="d-flex justify-content-center">
+            <button type="button" class="btn btn_bg btn-sm mr-1" (click)="addMediaLinks()" *ngIf="addmode">Save</button>
+            <button type="button" class="btn btn_bg btn-sm mr-1" (click)="updateMediaLinks()" *ngIf="editmode">Update</button>
+            <button type="button" class="btn btn_bg btn-sm mr-1" (click)="cancel()">Cancel</button>
+        </div>
+    </div>
+</div>

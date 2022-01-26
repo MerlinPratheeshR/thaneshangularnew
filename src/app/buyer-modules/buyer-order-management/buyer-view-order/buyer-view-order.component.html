@@ -1,0 +1,62 @@
+<div class="container-fluid">
+    <div class="row d-flex justify-content-start">
+        <div>
+            <h4 class="text_color_main">Order Details</h4>
+        </div>
+    </div>
+    <div class="card shadow mb-4 card_border_radius">
+        <div class="card-header py-3 card_header_table">
+            <div class="row">
+                <h6 class="m-0 font-weight-bold text-white">Order ID: #001</h6>
+            </div>
+        </div>
+        <!-- <div class="card-body" *ngIf="!dataLoaded" style="align-items: center;">
+            <div class="sk-chase">
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+            </div>
+            <p>Loading Orders</p>
+        </div> -->
+        <div class="card-body">
+            <div class="table-responsive">
+                <table datatable class="table table-bordered table-sm" datatable width="100%" cellspacing="0" [dtOptions]="dtOptions" >
+                    <thead style="font-size: 14px;" class="table_header" >
+                        <tr>
+                            <th>S.No</th>
+                            <th>Product Name</th>
+                            <th>Quantity</th>
+                            <th>Amount</th>
+                            <th>Tax</th>
+                            <th>Total Amount</th>
+                            <th>Order Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody style="font-size: 14px;">
+                        <tr *ngFor="let item of [1,2,3,4,5]; let i = index;" style="justify-content: center; align-items:center;">
+                            <td>{{i+1}}</td>
+                            <td>Product {{i+1}}</td>
+                            <td>{{i+1}}</td>
+                            <td>1000{{i+1}}</td>
+                            <td>1000{{i+1+ 10}} </td>
+                            <td>1000{{i+1+ 10}} </td>
+                            <td> 
+                                <span class="text-success" *ngIf="i % 2 == 0">Delivered</span> 
+                                <span class="text-danger" *ngIf="i % 2 != 0">Pending</span>
+                            </td>
+                            <td>
+                                <button style="background-color: transparent;" class="btn btn-sm"><i class="fa fa-edit" style="color: black;"></i></button>
+                                <button style="background-color: transparent;" class="btn btn-sm"><i class="fa fa-eye" style="color: black;"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

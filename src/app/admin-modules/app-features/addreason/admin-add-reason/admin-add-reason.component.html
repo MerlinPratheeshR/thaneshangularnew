@@ -1,0 +1,42 @@
+<div class="container-fluid">
+    <h4 class="text_color_black" *ngIf="addmode"><b>Add New Reason Schedule</b></h4>
+    <h4 class="text_color_black" *ngIf="editmode"><b>Update Reason Schedule</b></h4>  
+    <h4 class="text_color_black" *ngIf="viewmode"><b>Reason Details</b></h4>  
+    <div class="card card_border_radius card_top_shadow">
+        <div style="padding: 20px;">
+            <form [formGroup]="addReasonForm">
+                <div class="form-group row d-flex justify-content-center">
+                    <label for="" class="col-sm-2 col-form-label">Reason Name</label>
+                    <div class="col-sm-6">
+                        <input type="text" formControlName="reason_name" class="form-control">
+                        
+
+                        <span class="text-danger"
+                        *ngIf="(addReasonForm.controls.reason_name.touched) && addReasonForm.controls.reason_name.errors?.required">
+                        Reason Name is required
+                        </span>
+
+                        <mat-error class="text-danger" *ngIf="addReasonForm.controls.reason_name.errors?.pattern">
+                            Should not use special char
+                           </mat-error>
+
+                    </div>
+                </div>
+                <div class="form-group row d-flex justify-content-center">
+                    <label for=""  class="col-sm-2 col-form-label">Status</label>
+                    <div class="col-sm-6">
+                        <select formControlName="status" class="form-control">
+                            <option value="true">Active</option>
+                            <option value="false">Inactive</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+            <div class="d-flex justify-content-center">
+                <button type="button" class="btn btn_bg btn-sm mr-1" (click)="addReason()" *ngIf="addmode">ADD</button>
+                <button type="button" class="btn btn_bg btn-sm mr-1" (click)="updateReason()" *ngIf="editmode">UPDATE</button>
+                <button type="button" class="btn btn_bg btn-sm mr-1" (click)="cancel()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

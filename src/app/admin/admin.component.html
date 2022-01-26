@@ -1,0 +1,489 @@
+<div class="mainadmin">
+    <div id="wrapper">
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar"
+            style="height: 100vh;position: sticky;top: 0;overflow: scroll;">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <img src="{{logoUrl}}" style="height: 40px; width:auto;" alt="">
+                </div>
+            </a>
+
+            <li class="nav-item buy"> <span>SUPER ADMIN</span> </li>
+
+            <hr class="sidebar-divider my-0">
+            <li class="nav-item mt-2 mb-2" style="text-align: center;">
+                <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                    <div class="input-group">
+                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                            aria-label="Search" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-light" type="button">
+                                <i class="fas fa-search fa-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </li>
+            <div>
+
+                <li class="nav-item" [routerLink]="['/admin/dashboard']" routerLinkActive="active">
+                    <a class="nav-link">
+                        <i class="fas fa-fw fa-th"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#collapseTwo" data-bs-toggle="collapse"
+                        data-target="#collapseTwo" role="button" aria-expanded="true" aria-controls="collapseTwo">
+                        <i class="fas fa-fw fa-cog"></i>
+                        <span>Master Configuration data</span>
+                    </a>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="py-2 bg_nav_custom_1 collapse-inner rounded">
+                            <!-- <a class="collapse-item" [routerLink]="['/admin/city-management']"
+                        routerLinkActive="active">City</a> -->
+                            <a class="collapse-item" [routerLink]="['/admin/country-management']"
+                                routerLinkActive="active"><i class="fa fa-arrow-circle-right"
+                                    style="padding:0px 8px 0px 0px" aria-hidden="true"></i> Country</a>
+                            <a class="collapse-item" [routerLink]="['/admin/currency-management']"
+                                routerLinkActive="active"><i class="fa fa-arrow-circle-right"
+                                    style="padding:0px 8px 0px 0px" aria-hidden="true"></i>Currency</a>
+                            <a class="collapse-item" [routerLink]="['/admin/state-management']"
+                                routerLinkActive="active"><i class="fa fa-arrow-circle-right"
+                                    style="padding:0px 8px 0px 0px" aria-hidden="true"></i>State</a>
+                            <!-- <a class="collapse-item" [routerLink]="['/admin/city-management']"
+                        routerLinkActive="active"><i class="fa fa-arrow-circle-right" style="padding:0px 8px 0px 0px" aria-hidden="true"></i>City</a> -->
+
+                            <a class="collapse-item" [routerLink]="['/admin/payout-schedule-management']"
+                                routerLinkActive="active"><i class="fa fa-arrow-circle-right"
+                                    style="padding:0px 8px 0px 0px" aria-hidden="true"></i>Payout Schedule</a>
+                            <a class="collapse-item" [routerLink]="['/admin/product-type-management']"
+                                routerLinkActive="active"><i class="fa fa-arrow-circle-right"
+                                    style="padding:0px 8px 0px 0px" aria-hidden="true"></i>Product Type</a>
+                            <a class="collapse-item" [routerLink]="['/admin/reason-management']"
+                                routerLinkActive="active"><i class="fa fa-arrow-circle-right"
+                                    style="padding:0px 8px 0px 0px" aria-hidden="true"></i>Reason</a>
+                            <a class="collapse-item" [routerLink]="['/admin/subscription-plan-management']"
+                                routerLinkActive="active"><i class="fa fa-arrow-circle-right"
+                                    style="padding:0px 8px 0px 0px" aria-hidden="true"></i>Subscription Plan</a>
+                            <a class="collapse-item" [routerLink]="['/admin/trading-type-management']"
+                                routerLinkActive="active"><i class="fa fa-arrow-circle-right"
+                                    style="padding:0px 8px 0px 0px" aria-hidden="true"></i>Trading Type</a>
+                            <a class="collapse-item" [routerLink]="['/admin/user-type-management']"
+                                routerLinkActive="active"><i class="fa fa-arrow-circle-right"
+                                    style="padding:0px 8px 0px 0px" aria-hidden="true"></i>User Type</a>
+                            <a class="collapse-item" [routerLink]="['/admin/role-management']"
+                                routerLinkActive="active"><i class="fa fa-arrow-circle-right"
+                                    style="padding:0px 8px 0px 0px" aria-hidden="true"></i>Role</a>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-target="#collapseSTATUS"
+                        aria-expanded="true" aria-controls="collapseSTATUS">
+                        <i class="fas fa-info"></i>
+                        <span>Status Management</span>
+                    </a>
+                    <div id="collapseSTATUS" class="collapse" aria-labelledby="headingFour"
+                        data-parent="#accordionSidebar">
+                        <div class="py-2 bg_nav_custom_1 collapse-inner rounded">
+                            <a class="collapse-item" [routerLink]="['/admin/status-management/category-request']"
+                                routerLinkActive="active"><i class="fa fa-arrow-circle-right"
+                                    style="padding:0px 8px 0px 0px" aria-hidden="true"></i>Category Request Status</a>
+                            <a class="collapse-item" [routerLink]="['/admin/status-management/make-offer']"
+                                routerLinkActive="active"><i class="fa fa-arrow-circle-right"
+                                    style="padding:0px 8px 0px 0px" aria-hidden="true"></i>Make Offer Status</a>
+                            <a class="collapse-item" [routerLink]="['/admin/status-management/order']"
+                                routerLinkActive="active"><i class="fa fa-arrow-circle-right"
+                                    style="padding:0px 8px 0px 0px" aria-hidden="true"></i>Order Status</a>
+                            <a class="collapse-item" [routerLink]="['/admin/status-management/parts-request']"
+                                routerLinkActive="active"><i class="fa fa-arrow-circle-right"
+                                    style="padding:0px 8px 0px 0px" aria-hidden="true"></i>Parts Request Status</a>
+                            <a class="collapse-item" [routerLink]="['/admin/status-management/payment']"
+                                routerLinkActive="active"><i class="fa fa-arrow-circle-right"
+                                    style="padding:0px 8px 0px 0px" aria-hidden="true"></i>Payment Status</a>
+                            <a class="collapse-item" [routerLink]="['/admin/status-management/quote']"
+                                routerLinkActive="active"><i class="fa fa-arrow-circle-right"
+                                    style="padding:0px 8px 0px 0px" aria-hidden="true"></i>Quote Status</a>
+                            <a class="collapse-item" [routerLink]="['/admin/status-management/registration']"
+                                routerLinkActive="active"><i class="fa fa-arrow-circle-right"
+                                    style="padding:0px 8px 0px 0px" aria-hidden="true"></i>Registration Status</a>
+                            <a class="collapse-item" [routerLink]="['/admin/status-management/shipment']"
+                                routerLinkActive="active"><i class="fa fa-arrow-circle-right"
+                                    style="padding:0px 8px 0px 0px" aria-hidden="true"></i>Shipment Status</a>
+
+                        </div>
+                    </div>
+                </li>
+
+
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/admin/buyermanagement']" routerLinkActive="active">
+                        <i class="fas fa-user"></i>
+                        <span>Buyer Management</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/admin/sellermanagement']" routerLinkActive="active">
+                        <i class="fas fa-user"></i>
+                        <span>Seller Management</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/admin/intermediatormanagement']" routerLinkActive="active">
+                        <i class="fas fa-user"></i>
+                        <span>Intermediator management</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/admin/order-management']" routerLinkActive="active">
+                        <i class="fas fa-file-invoice"></i>
+                        <span>Order Management</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-bs-toggle="collapse" data-target="#collapseTAX"
+                        aria-expanded="true" aria-controls="collapseTAX">
+                        <i class="fas fa-file-invoice"></i>
+                        <span>Tax Management</span>
+                    </a>
+                    <div id="collapseTAX" class="collapse" aria-labelledby="headingFour"
+                        data-parent="#accordionSidebar">
+                        <div class="py-2 bg_nav_custom_1 collapse-inner rounded">
+                            <a class="collapse-item" [routerLink]="['/admin/tax-management/tax-codes']"
+                                routerLinkActive="active"><i class="fa fa-arrow-circle-right"
+                                    style="padding:0px 8px 0px 0px" aria-hidden="true"></i>Tax Codes</a>
+                            <a class="collapse-item" [routerLink]="['/admin/tax-management/jurisdiction']"
+                                routerLinkActive="active"><i class="fa fa-arrow-circle-right"
+                                    style="padding:0px 8px 0px 0px" aria-hidden="true"></i>Jurisdiction</a>
+                            <a class="collapse-item" [routerLink]="['/admin/tax-management/place-of-supply']"
+                                routerLinkActive="active"><i class="fa fa-arrow-circle-right"
+                                    style="padding:0px 8px 0px 0px" aria-hidden="true"></i>Place of Supply</a>
+                            <a class="collapse-item" [routerLink]="['/admin/tax-management/vat-details']"
+                                routerLinkActive="active"><i class="fa fa-arrow-circle-right"
+                                    style="padding:0px 8px 0px 0px" aria-hidden="true"></i>VAT Details</a>
+                        </div>
+                    </div>
+                </li>
+
+
+
+
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-target="#collapsePARTS"
+                        aria-expanded="true" aria-controls="collapsePARTS">
+                        <i class="fas fa-puzzle-piece"></i>
+                        <span>Parts Management</span>
+                    </a>
+                    <div id="collapsePARTS" class="collapse" aria-labelledby="headingThree"
+                        data-parent="#accordionSidebar">
+                        <div class="py-2 bg_nav_custom_1 collapse-inner rounded">
+                            <a class="collapse-item" [routerLink]="['/admin/parts-management/group-management']"
+                                routerLinkActive="active"><i class="fa fa-arrow-circle-right"
+                                    style="padding:0px 8px 0px 0px" aria-hidden="true"></i>Group</a>
+                            <a class="collapse-item" [routerLink]="['/admin/parts-management/sub-group-management']"
+                                routerLinkActive="active"><i class="fa fa-arrow-circle-right"
+                                    style="padding:0px 8px 0px 0px" aria-hidden="true"></i>Sub Group</a>
+                            <a class="collapse-item" [routerLink]="['/admin/parts-management/sub-node-management']"
+                                routerLinkActive="active"><i class="fa fa-arrow-circle-right"
+                                    style="padding:0px 8px 0px 0px" aria-hidden="true"></i>Sub Node</a>
+                            <a class="collapse-item" [routerLink]="['/admin/parts-management/parameters-management']"
+                                routerLinkActive="active"><i class="fa fa-arrow-circle-right"
+                                    style="padding:0px 8px 0px 0px" aria-hidden="true"></i>Parameters</a>
+                            <a class="collapse-item" [routerLink]="['/admin/parts-management/brand-management']"
+                                routerLinkActive="active"><i class="fa fa-arrow-circle-right"
+                                    style="padding:0px 8px 0px 0px" aria-hidden="true"></i>Brand</a>
+                            <a class="collapse-item" [routerLink]="['/admin/parts-management/car-management']"
+                                routerLinkActive="active"><i class="fa fa-arrow-circle-right"
+                                    style="padding:0px 8px 0px 0px" aria-hidden="true"></i>Car</a>
+                            <a class="collapse-item" [routerLink]="['/admin/parts-management/model-management']"
+                                routerLinkActive="active"><i class="fa fa-arrow-circle-right"
+                                    style="padding:0px 8px 0px 0px" aria-hidden="true"></i>Model</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/admin/product-management']" routerLinkActive="active">
+                        <i class="fas fa-archive"></i>
+                        <span>Product Management</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/admin/commission-management']" routerLinkActive="active">
+                        <i class="fas fa-wallet"></i>
+                        <span>Commission Management</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link">
+                        <i class="fas fa-folder-open"></i>
+                        <span>Category Request Management</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link">
+                        <i class="far fa-newspaper"></i>
+                        <span>Newsletter Management</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-bs-toggle="collapse" data-target="#collapseTemplate"
+                        aria-expanded="true" aria-controls="collapseTemplate">
+                        <i class="fas fa-image"></i>
+                        <span>Template Management</span>
+                    </a>
+                    <div id="collapseTemplate" class="collapse" aria-labelledby="headingFour"
+                        data-parent="#accordionSidebar">
+                        <div class="py-2 bg_nav_custom_1 collapse-inner rounded">
+                            <a class="collapse-item"
+                                [routerLink]="['/admin/templates-management/sms-templates-management']"
+                                routerLinkActive="active"><i class="fa fa-arrow-circle-right"
+                                    style="padding:0px 8px 0px 0px" aria-hidden="true"></i>SMS Management</a>
+                            <a class="collapse-item"
+                                [routerLink]="['/admin/templates-management/email-templates-management']"
+                                routerLinkActive="active"><i class="fa fa-arrow-circle-right"
+                                    style="padding:0px 8px 0px 0px" aria-hidden="true"></i>Email Management</a>
+                            <a class="collapse-item"
+                                [routerLink]="['/admin/templates-management/configuration-details-management']"
+                                routerLinkActive="active"><i class="fa fa-arrow-circle-right"
+                                    style="padding:0px 8px 0px 0px" aria-hidden="true"></i>Configuration Details</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">
+                        <i class="fas fa-bell"></i>
+                        <span>Notification Management</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>Ratings Management</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">
+                        <i class="fas fa-file-alt"></i>
+                        <span>Parts Unavailability Request Management</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">
+                        <i class="fas fa-newspaper"></i>
+                        <span>Inventory Management</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">
+                        <i class="fas fa-headset"></i>
+                        <span>Help Management</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/admin/make-offer-management']" routerLinkActive="active">
+                        <i class="fas fa-percent"></i>
+                        <span>Make Offer Management</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">
+                        <i class="fas fa-fw fa-cog"></i>
+                        <span>Audit trail</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#collapseCMS" data-bs-toggle="collapse"
+                        data-target="#collapseCMS" aria-expanded="true" aria-controls="collapseCMS">
+                        <i class="fas fa-fw fa-wrench"></i>
+                        <span>Content Management System</span>
+                    </a>
+                    <div id="collapseCMS" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="py-2 bg_nav_custom_1 collapse-inner rounded">
+                            <a class="collapse-item" [routerLink]="['/admin/cms-info']" routerLinkActive="active"><i
+                                    class="fa fa-arrow-circle-right" style="padding:0px 8px 0px 0px"
+                                    aria-hidden="true"></i>Profile</a>
+                            <a class="collapse-item" [routerLink]="['/admin/cms-banner']" routerLinkActive="active"><i
+                                    class="fa fa-arrow-circle-right" style="padding:0px 8px 0px 0px"
+                                    aria-hidden="true"></i>Banners</a>
+                            <a class="collapse-item" [routerLink]="['/admin/cms-features']" routerLinkActive="active"><i
+                                    class="fa fa-arrow-circle-right" style="padding:0px 8px 0px 0px"
+                                    aria-hidden="true"></i>Features</a>
+                            <a class="collapse-item" [routerLink]="['/admin/cms-about']" routerLinkActive="active"><i
+                                    class="fa fa-arrow-circle-right" style="padding:0px 8px 0px 0px"
+                                    aria-hidden="true"></i>About</a>
+                            <a class="collapse-item" [routerLink]="['/admin/cms-services']" routerLinkActive="active"><i
+                                    class="fa fa-arrow-circle-right" style="padding:0px 8px 0px 0px"
+                                    aria-hidden="true"></i>Services</a>
+                            <a class="collapse-item" [routerLink]="['/admin/cms-buyer-seller']"
+                                routerLinkActive="active"><i class="fa fa-arrow-circle-right"
+                                    style="padding:0px 8px 0px 0px" aria-hidden="true"></i>Buyer & Seller</a>
+                            <a class="collapse-item" [routerLink]="['/admin/cms-social-media-links']"
+                                routerLinkActive="active"><i class="fa fa-arrow-circle-right"
+                                    style="padding:0px 8px 0px 0px" aria-hidden="true"></i>Social Media Links</a>
+                            <a class="collapse-item" [routerLink]="['/admin/cms-usefull-links']"
+                                routerLinkActive="active"><i class="fa fa-arrow-circle-right"
+                                    style="padding:0px 8px 0px 0px" aria-hidden="true"></i>Usefull Links</a>
+                            <a class="collapse-item" [routerLink]="['/admin/cms-nav-links']"
+                                routerLinkActive="active"><i class="fa fa-arrow-circle-right"
+                                    style="padding:0px 8px 0px 0px" aria-hidden="true"></i>Nav Links</a>
+                            <a class="collapse-item" [routerLink]="['/admin/cms-mobile-section']"
+                                routerLinkActive="active"><i class="fa fa-arrow-circle-right"
+                                    style="padding:0px 8px 0px 0px" aria-hidden="true"></i>Mobile Section</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/admin/static-page-management']" routerLinkActive="active">
+                        <i class="fas fa-sticky-note"></i>
+                        <span>Static Pages Management</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/admin/subscription-management']" routerLinkActive="active">
+                        <i class="fas fa-user-friends"></i>
+                        <span>Subscription Management</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/admin/vin-search-history-management']"
+                        routerLinkActive="active">
+                        <i class="fas fa-search"></i>
+                        <span>VIN Search History </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">
+                        <i class="fas fa-newspaper"></i>
+                        <span>Reports</span>
+                    </a>
+                </li>
+            </div>
+        </ul>
+
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <div id="content">
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 shadow">
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <div class="text-center d-none d-md-inline">
+                        <button class="text_color_main btn btn-link mr-3" style="font-size: 16px;" id="sidebarToggle">
+                            <i class="fa fa-bars"></i> </button>
+                    </div>
+                    <form
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <!-- <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div> -->
+                    </form>
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-user fa-fw text_color_main" style="font-size: 24px;"></i>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Super Admin</span>
+                                <i class="fas fa-angle-down fa-fw text_color_main" style="font-size: 16px;"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+
+                                <a class="dropdown-item" [routerLink]="['/login']" data-bs-toggle="modal"
+                                    data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown no-arrow mx-1">
+                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-bell fa-fw text_color_main" style="font-size: 24px;"></i>
+                                <span class="badge badge-danger badge-counter" style="font-size: 16px;">3+</span>
+                            </a>
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="alertsDropdown">
+                                <h6 class="dropdown-header">
+                                    Alerts Center
+                                </h6>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-primary">
+                                            <i class="fas fa-file-alt text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">December 12, 2019</div>
+                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-success">
+                                            <i class="fas fa-donate text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">December 7, 2019</div>
+                                        $290.29 has been deposited into your account!
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-warning">
+                                            <i class="fas fa-exclamation-triangle text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">December 2, 2019</div>
+                                        Spending Alert: We've noticed unusually high spending for your account.
+                                    </div>
+                                </a>
+                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                            </div>
+                        </li>
+                    </ul>
+
+                </nav>
+
+                <div>
+                    <div class="container-fluid">
+                        <router-outlet> </router-outlet>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<footer class="header_3 bg_nav_custom_1 card_top_shadow">
+    <div class="container-fluid">
+        <div class="row" style="text-align:center;">
+            <div class="col-12">
+                <!-- <img src="{{logoUrl}}" alt="" class="img-fluid mb-1" style="height: 35px; width:auto;"> -->
+                <div style="margin:5px !important;">
+                    <p style="color: white; font-size:14px; margin:0px !important;">{{copyrights}} </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

@@ -1,0 +1,59 @@
+<div class="container-fluid">
+    <div class="row d-flex justify-content-start">
+        <h4 class="text_color_main">
+            <b>MANAGE ORDERS</b>
+        </h4>
+    </div>
+    <div class="card shadow mb-4 card_border_radius">
+        
+        <!-- <div class="card-body" *ngIf="!dataLoaded" style="align-items: center;">
+            <div class="sk-chase">
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+            </div>
+            <p>Loading Orders</p>
+        </div> -->
+        <div class="card-body">
+            <div class="table-responsive">
+                <table datatable class="table table-bordered table-sm" datatable width="180%" cellspacing="0" [dtOptions]="dtOptions" >
+                    <thead style="font-size: 14px;" class="table_header" >
+                        <tr>
+                            <th>S.No</th>
+                            <th>Order Date</th>
+                            <th>Order ID</th>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Type</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody style="font-size: 14px;">
+                        <tr *ngFor="let item of [1,2,3,4,5]; let i = index;" style="justify-content: center; align-items:center;">
+                            <td>{{i+1}}</td>
+                            <td>17-06-2021</td>
+                            <td>#ORDER-{{i+1}}</td>
+                            <td>Product - {{i+1}}</td>
+                            <td>{{i+1}}</td>
+                            <td>1000{{i+1}}</td>
+                            <td>Type - {{i+1}}</td>
+                            <td>1000{{i+1}}</td>
+                            <td>Active</td>
+                            <td>
+                                <button style="background-color: transparent;" class="btn btn-sm"><i class="fa fa-edit" style="color: black;"></i></button>
+                                <button style="background-color: transparent;" class="btn btn-sm" (click)="viewOrder(i)" ><i class="fa fa-eye" style="color: black;"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

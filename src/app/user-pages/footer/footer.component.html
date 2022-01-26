@@ -1,0 +1,102 @@
+<section class="header-3">
+    <div style="border:none; background-color:#056CB1;padding-top: 20px;">
+        <div class="card card_footer">
+            <div class="container-fluid" style="padding: 25px;">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <img src="{{logoUrl}}" alt="logo" class="f-logo" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div [innerHtml]="description" style="font-size: 16px; text-align: justify;"></div>
+                        <div class="mt-2" style="padding: 1px;text-align:center;">
+                            <a class="me-4" href="{{item.link}}" target="_blank"
+                                *ngFor="let item of medialinksList"><img src="{{item.icon}}" alt=""
+                                    class="img-fluid mb-1"></a>
+
+                            <a class="me-4" href="#" target="_blank"><img
+                                    src="http://192.168.7.10:3100/api/cms-main/social_media_links_cms/viewimage?filename=1624384926434facebook.png"
+                                    alt="" class="img-fluid mb-1"></a>
+
+                            <a class="me-4" href="#" target="_blank"><img
+                                    src="http://192.168.7.10:3100/api/cms-main/social_media_links_cms/viewimage?filename=1624385006523twitter.png"
+                                    alt="" class="img-fluid mb-1"></a>
+
+                            <a class="me-4" href="#" target="_blank"><img
+                                    src="http://192.168.7.10:3100/api/cms-main/social_media_links_cms/viewimage?filename=1624385158628instagram.png"
+                                    alt="" class="img-fluid mb-1"></a>
+
+                            <a class="me-4" href="#" target="_blank"><img
+                                    src="http://192.168.7.10:3100/api/cms-main/social_media_links_cms/viewimage?filename=1624388779774linkedin.png"
+                                    alt="" class="img-fluid mb-1"></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-sm-12" style="justify-content:center; align-items:start;">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                <!--<h3 class="fw-bold text-center">Our Services</h3>-->
+                                <ul class="p-0" style="list-style: none; text-align: center;">
+                                    <li *ngFor="let item of NavLinksList"><a href="{{item.link}}"
+                                            style="text-decoration: none;">{{item.label}}</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                <!--<h3 class="fw-bold text-center">Links</h3>-->
+                                <ul class="p-0" style="list-style: none; text-align: center;">
+                                    <li *ngFor="let item of UsefullLinksList"><a href="{{item.link}}"
+                                            style="text-decoration: none;">{{item.label}}</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-sm-12"
+                        style="justify-content:center; align-items:start;margin:auto">
+                        <!--<h3 class="fw-bold text-center">Contact</h3>
+                        <div style="padding: 1px;display:flex;height:100%;align-items:center;">
+                            <a class="me-4" href="{{item.link}}" target="_blank"
+                                *ngFor="let item of medialinksList"><img src="{{item.icon}}" alt=""
+                                    class="img-fluid mb-1"></a>
+                        </div>-->
+                        <form>
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <label class="mb-1">Subscribe to our newsletter</label>
+                                    <input type="text" class="form-control mb-2" aria-label="Email ID"
+                                        aria-describedby="basic-addon2">
+                                    <button class="btn_bg btn" style="background-color: #056CB1; color:white;"
+                                        type="button">Subscribe</button>
+                                </div>
+                                <div class="offset-3 col-lg-6 col-md-6 col-sm-6 mt-2">
+                                    <a class="me-4" href="#" target="_blank"><img
+                                            src="http://192.168.7.10:3100/api/cms-main/social_media_links_cms/viewimage?filename=microsoft-dynamics.png"
+                                            alt="" class="img-fluid mb-1" style="height:48px;"></a>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <a class="me-4" href="#" target="_blank"><img
+                                            src="http://192.168.7.10:3100/api/cms-main/social_media_links_cms/viewimage?filename=secure-ssl-encryption.png"
+                                            alt="" class="img-fluid mb-1" style="height:48px;"></a>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <a class="me-4" href="#" target="_blank"><img
+                                            src="http://192.168.7.10:3100/api/cms-main/social_media_links_cms/viewimage?filename=1641204912825xm.png"
+                                            alt="" class="img-fluid mb-1" style="height:48px;"></a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container p-2">
+            <div class="row">
+                <div class="col-12" style="text-align: center;">
+                    <p style="color: white; font-size:15px; margin:0px !important;">{{copyrights}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</section>
